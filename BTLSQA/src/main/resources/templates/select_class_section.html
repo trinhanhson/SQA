@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng ký học phần</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+<!--    <div class="col-md-4">-->
+<!--      &lt;!&ndash; Phần lọc &ndash;&gt;-->
+<!--      <div class="card mb-4">-->
+<!--        <div class="card-header">-->
+<!--          <h5 class="card-title">Lọc theo môn học</h5>-->
+<!--        </div>-->
+<!--        <div class="card-body">-->
+<!--          <form th:action="@{/search}" method="get">-->
+<!--            <div class="form-group">-->
+<!--              <label for="maMonHoc">Mã môn học hoặc tên môn học:</label>-->
+<!--              <input type="text" class="form-control" id="maMonHoc" name="maMonHoc" placeholder="Enter MMH" th:value="${maMonHoc}">-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-primary">Lọc</button>-->
+<!--          </form>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+    <div class="col-md-8">
+
+      <!-- Bảng hiển thị danh sách các lớp học phần -->
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Danh sách lớp học phần</h5>
+        </div>
+        <div class="card-body">
+<!--          <form th:action="@{/search}" method="post">-->
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>DK</th>
+                <th>Mã MH</th>
+                <th>Tên môn học</th>
+                <th>STC</th>
+                <th>NMH</th>
+                <th>SSTD</th>
+                <th>SSTT</th>
+                <th>Thứ</th>
+                <th>Tiết BD</th>
+                <th>ST</th>
+                <th>Phòng</th>
+                <th>GiangVien</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!-- Dữ liệu danh sách lớp học phần -->
+              <tr th:each="lop : ${listLopHocPhan}">
+                <td>
+                  <input type="checkbox" name="lophoc" th:value="${lop.id}">
+                </td>
+                <td th:text="${lop.monHoc.id}"></td>
+                <td th:text="${lop.monHoc.ten}"></td>
+                <td th:text="${lop.monHoc.soTinChi}"></td>
+                <td th:text="${lop.nhomMonHoc}"></td>
+                <td th:text="${lop.siSoToiDa}"></td>
+                <td th:text="${lop.siSoThucTe}"></td>
+                <td th:text="${lop.thu}"></td>
+                <td th:text="${lop.tietBatDau}"></td>
+                <td th:text="${lop.soTiet}"></td>
+                <td th:text="${lop.phong}"></td>
+                <td th:text="${lop.tenGiangVien}"></td>
+
+              </tr>
+              </tbody>
+            </table>
+            <!-- Danh sách các lớp học phần đã chọn -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

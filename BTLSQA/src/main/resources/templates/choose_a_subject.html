@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Chọn môn học</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Phần lọc -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title">Lọc môn học</h5>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/search}" method="get">
+                        <div class="form-group">
+                            <label for="maMonHoc">Mã môn học hoặc tên môn học</label>
+                            <input type="text" class="form-control" id="maMonHoc" name="maMonHoc" placeholder="Enter mmh or name" th:value="${maMonHoc}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div th:if ="${message}" class="alert alert-success text-center">
+                [[${message}]]
+            </div>
+            <!-- Phần hiển thị danh mục các môn học -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="card-title">Danh mục các môn học</h5>
+                </div>
+                <div class="card-body">
+<!--                    <form th:action="@{/search}" method="post">-->
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Mã môn học</th>
+                            <th>Tên môn học</th>
+                            <th>Số tín chỉ</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Dữ liệu danh sách môn học -->
+                        <tr th:each="monhoc : ${listMonHoc}" onclick="">
+                            <td th:text="${monhoc.id}"></td>
+                            <td th:text="${monhoc.ten}"></td>
+                            <td th:text="${monhoc.soTinChi}"></td>
+                            <td>
+                                <a class="h4 mr-3" th:href="@{'/search/'+${monhoc.id}}">chọn</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
