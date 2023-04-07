@@ -27,7 +27,7 @@ public class MonHocController {
     private DangKiHocRepository dangKiHocRepository;
 
 
-    @GetMapping("/")
+    @GetMapping("/chonMonHoc")
     public String showHomePage() {
         return "choose_a_subject";
     }
@@ -86,7 +86,7 @@ public class MonHocController {
 //        if (maMonHoc != null) {
 //            MonHoc monHoc = monHocRepository.findById(String.valueOf(Long.valueOf(maMonHoc))).orElse(null);
 //            if (monHoc != null) {
-//                listLopHocPhan = lopHocPhanRepository.findByMonHoc_Id(monHoc.getId());
+//                listLopHocPhan = lopHocPhanRepository.findById(monHoc.getId());
 //            }
 //        }
 //        model.addAttribute("listLopHocPhan", listLopHocPhan);

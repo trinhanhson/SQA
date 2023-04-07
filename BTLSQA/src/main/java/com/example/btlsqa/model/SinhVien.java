@@ -21,14 +21,14 @@ public class SinhVien {
     @Column(name = "ho_ten")
     private String hoTen;
 
-    @Column(name = "ngay_sinh")
-    private LocalDate ngaySinh;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "so_dien_thoai")
-    private String soDienThoai;
+//    @Column(name = "ngay_sinh")
+//    private LocalDate ngaySinh;
+//
+//    @Column(name = "email")
+//    private String email;
+//
+//    @Column(name = "so_dien_thoai")
+//    private String soDienThoai;
 
     @Column(name = "ma_sinh_vien")
     private String maSinhVien;
@@ -44,9 +44,9 @@ public class SinhVien {
         this.tenDangNhap = tenDangNhap;
         this.matKhau = matKhau;
         this.hoTen = hoTen;
-        this.ngaySinh = ngaySinh;
-        this.email = email;
-        this.soDienThoai = soDienThoai;
+//        this.ngaySinh = ngaySinh;
+//        this.email = email;
+//        this.soDienThoai = soDienThoai;
         this.maSinhVien = maSinhVien;
     }
 
@@ -82,29 +82,29 @@ public class SinhVien {
         this.hoTen = hoTen;
     }
 
-    public LocalDate getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(LocalDate ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSoDienThoai() {
-        return soDienThoai;
-    }
-
-    public void setSoDienThoai(String soDienThoai) {
-        this.soDienThoai = soDienThoai;
-    }
+//    public LocalDate getNgaySinh() {
+//        return ngaySinh;
+//    }
+//
+//    public void setNgaySinh(LocalDate ngaySinh) {
+//        this.ngaySinh = ngaySinh;
+//    }
+//
+//    public String getEmail() {
+//        return email;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public String getSoDienThoai() {
+//        return soDienThoai;
+//    }
+//
+//    public void setSoDienThoai(String soDienThoai) {
+//        this.soDienThoai = soDienThoai;
+//    }
 
     public String getMaSinhVien() {
         return maSinhVien;
@@ -121,9 +121,9 @@ public class SinhVien {
                 ", tenDangNhap='" + tenDangNhap + '\'' +
                 ", matKhau='" + matKhau + '\'' +
                 ", hoTen='" + hoTen + '\'' +
-                ", ngaySinh=" + ngaySinh +
-                ", email='" + email + '\'' +
-                ", soDienThoai='" + soDienThoai + '\'' +
+//                ", ngaySinh=" + ngaySinh +
+//                ", email='" + email + '\'' +
+//                ", soDienThoai='" + soDienThoai + '\'' +
                 ", maSinhVien='" + maSinhVien + '\'' +
                 '}';
     }

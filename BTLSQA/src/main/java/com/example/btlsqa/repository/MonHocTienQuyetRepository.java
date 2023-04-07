@@ -9,10 +9,9 @@ import java.util.List;
 
 public interface MonHocTienQuyetRepository extends JpaRepository<MonHocTienQuyet, Integer> {
 
-        List<MonHocTienQuyet> findByMonHoc_Id(String s);
+    List<MonHocTienQuyet> findByMonHoc_Id(String s);
 
-        @Query("SELECT m.monHocTienQuyet.id FROM MonHocTienQuyet m WHERE m.monHoc.id = :monHocId")
-        List<String> findByMonHocId(@Param("monHocId") String monHocId);
-
+    @Query("SELECT m.monHocTienQuyet.id FROM MonHocTienQuyet m WHERE m.monHoc.id = :monHocId")
+    List<String> findByMonHocId(@Param("monHocId") String monHocId);
 
 }
