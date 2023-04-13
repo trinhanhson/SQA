@@ -1,9 +1,17 @@
 package com.example.btlsqa.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.Builder;
 
-import java.util.List;
-
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "mon_hoc")
 public class MonHoc {
@@ -16,41 +24,6 @@ public class MonHoc {
 
     @Column(name = "so_tin_chi")
     private Integer soTinChi;
-
-    // constructors, getters, setters, toString
-
-    public MonHoc() {
-    }
-
-    public MonHoc(String id, String ten, Integer soTinChi) {
-        this.id = id;
-        this.ten = ten;
-        this.soTinChi = soTinChi;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTen() {
-        return ten;
-    }
-
-    public void setTen(String ten) {
-        this.ten = ten;
-    }
-
-    public Integer getSoTinChi() {
-        return soTinChi;
-    }
-
-    public void setSoTinChi(Integer soTinChi) {
-        this.soTinChi = soTinChi;
-    }
 
     @Override
     public String toString() {

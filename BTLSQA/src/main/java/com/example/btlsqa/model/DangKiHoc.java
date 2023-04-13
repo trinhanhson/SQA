@@ -1,7 +1,12 @@
 package com.example.btlsqa.model;
 
 import jakarta.persistence.*;
-
+import lombok.*;
+@Builder
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "dang_ki_hoc")
 public class DangKiHoc {
@@ -22,60 +27,6 @@ public class DangKiHoc {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lop_hoc_phan_id")
     private LopHocPhan lopHocPhan;
-
-    // constructors, getters, setters, toString
-
-
-    public DangKiHoc() {
-    }
-
-    public DangKiHoc(int id, float diemTongKet, int soLanHoc, SinhVien sinhVien, LopHocPhan lopHocPhan) {
-        this.id = id;
-        this.diemTongKet = diemTongKet;
-        this.soLanHoc = soLanHoc;
-        this.sinhVien = sinhVien;
-        this.lopHocPhan = lopHocPhan;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public float getDiemTongKet() {
-        return diemTongKet;
-    }
-
-    public void setDiemTongKet(float diemTongKet) {
-        this.diemTongKet = diemTongKet;
-    }
-
-    public int getSoLanHoc() {
-        return soLanHoc;
-    }
-
-    public void setSoLanHoc(int soLanHoc) {
-        this.soLanHoc = soLanHoc;
-    }
-
-    public SinhVien getSinhVien() {
-        return sinhVien;
-    }
-
-    public void setSinhVien(SinhVien sinhVien) {
-        this.sinhVien = sinhVien;
-    }
-
-    public LopHocPhan getLopHocPhan() {
-        return lopHocPhan;
-    }
-
-    public void setLopHocPhan(LopHocPhan lopHocPhan) {
-        this.lopHocPhan = lopHocPhan;
-    }
 
     @Override
     public String toString() {

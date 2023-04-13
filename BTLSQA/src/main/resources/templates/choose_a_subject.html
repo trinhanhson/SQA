@@ -15,10 +15,11 @@
                     <h5 class="card-title">Lọc môn học</h5>
                 </div>
                 <div class="card-body">
-                    <form th:action="@{/search}" method="get">
+                    <form th:action="@{/choose}" method="get">
                         <div class="form-group">
                             <label for="maMonHoc">Mã môn học hoặc tên môn học</label>
-                            <input type="text" class="form-control" id="maMonHoc" name="maMonHoc" placeholder="Enter mmh or name" th:value="${maMonHoc}">
+                            <input type="text" class="form-control" id="maMonHoc" name="maMonHoc"
+                                   placeholder="Enter mmh or name" th:value="${maMonHoc}">
                         </div>
                         <button type="submit" class="btn btn-primary">Search</button>
                     </form>
@@ -26,7 +27,7 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div th:if ="${message}" class="alert alert-success text-center">
+            <div th:if="${message}" class="alert alert-success text-center">
                 [[${message}]]
             </div>
             <!-- Phần hiển thị danh mục các môn học -->
@@ -35,7 +36,6 @@
                     <h5 class="card-title">Danh mục các môn học</h5>
                 </div>
                 <div class="card-body">
-<!--                    <form th:action="@{/search}" method="post">-->
                     <table class="table table-striped">
                         <thead>
                         <tr>
@@ -47,12 +47,12 @@
                         </thead>
                         <tbody>
                         <!-- Dữ liệu danh sách môn học -->
-                        <tr th:each="monhoc : ${listMonHoc}" onclick="">
+                        <tr th:each="monhoc : ${listMonHoc}">
                             <td th:text="${monhoc.id}"></td>
                             <td th:text="${monhoc.ten}"></td>
                             <td th:text="${monhoc.soTinChi}"></td>
                             <td>
-                                <a class="h4 mr-3" th:href="@{'/search/'+${monhoc.id}}">chọn</a>
+                                <a class="h4 mr-3" th:href="@{'/choose/'+${monhoc.id}}">chọn</a>
                             </td>
                         </tr>
                         </tbody>
