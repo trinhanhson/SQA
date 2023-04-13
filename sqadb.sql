@@ -12,6 +12,9 @@ CREATE TABLE sqadb.sinh_vien (
     ten_dang_nhap varchar(255),
     mat_khau varchar(255),
 	ho_ten varchar(255),
+    ngay_sinh date,
+    email varchar(255),
+    so_dien_thoai varchar(255),
     ma_sinh_vien varchar(255)
 );
 
@@ -52,13 +55,13 @@ create table sqadb.dang_ki_hoc(
     FOREIGN KEY (lop_hoc_phan_id) REFERENCES sqadb.lop_hoc_phan(id)
 );
 
-INSERT INTO sqadb.sinh_vien (id, ten_dang_nhap, mat_khau, ho_ten, ma_sinh_vien)
+INSERT INTO sqadb.sinh_vien (id, ten_dang_nhap, mat_khau, ho_ten, ngay_sinh, email, so_dien_thoai, ma_sinh_vien)
 VALUES 
-(1,"trinhanhson","201201","Trinh Anh Son","B19DCCN562"),
-(2,"hoangcongtu","201201","Hoang Cong Tu","B19DCCN563"),
-(3,"leminhtuan","201201","Le Minh Tuan","B19DCCN564"),
-(4,"khongduytuan","201201","Khong Duy Tuan","B19DCCN565"),
-(5,"vutruonggiang","201201","Vu Truong Giang","B19DCCN566");
+(1,"trinhanhson","201201","Trinh Anh Son","2001-12-20","strinhanh@gmail.com","0123456789","B19DCCN562"),
+(2,"hoangcongtu","201201","Hoang Cong Tu","2001-12-20","congtuh@gmail.com","0123456789","B19DCCN563"),
+(3,"leminhtuan","201201","Le Minh Tuan","2001-12-20","minhtuanl@gmail.com","0123456789","B19DCCN564"),
+(4,"khongduytuan","201201","Khong Duy Tuan","2001-12-20","duytuank@gmail.com","0123456789","B19DCCN565"),
+(5,"vutruonggiang","201201","Vu Truong Giang","2001-12-20","truonggiangv@gmail.com","0123456789","B19DCCN566");
 
 
 INSERT INTO sqadb.mon_hoc (id,ten,so_tin_chi)
