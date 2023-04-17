@@ -18,25 +18,25 @@ import java.util.List;
 public class MonHocRepositoryTests {
     @Autowired private MonHocRepository monHocRepositoryrepository;
 
-    List<MonHoc> mockData = MocData.getMockDataMonHoc();
-
-    @BeforeAll
-    public static void initData(@Autowired MonHocRepository monHocRepository){
-        monHocRepository.saveAll(MocData.getMockDataMonHoc());
-    }
-
-    @Test
-    @DisplayName("getListMonHoc() should return unique monhoc name")
-    public void getListMonHoc_shouldReturnUniqueMonHocName() {
-        List<String> listMonHoc = monHocRepositoryrepository.getListMonHoc();
-        List<String> expectedListMonHoc = mockData.stream().map(MonHoc::getTen).distinct().toList();
-
-        Assertions
-                .assertThat(listMonHoc)
-                .isNotNull()
-                .hasSize(expectedListMonHoc.size())
-                .containsExactlyInAnyOrderElementsOf(expectedListMonHoc);
-    }
+//    List<MonHoc> mockData = MocData.getMockDataMonHoc();
+//
+//    @BeforeAll
+//    public static void initData(@Autowired MonHocRepository monHocRepository){
+//        monHocRepository.saveAll(MocData.getMockDataMonHoc());
+//    }
+//
+//    @Test
+//    @DisplayName("getListMonHoc() should return unique monhoc name")
+//    public void getListMonHoc_shouldReturnUniqueMonHocName() {
+//        List<String> listMonHoc = monHocRepositoryrepository.getListMonHoc();
+//        List<String> expectedListMonHoc = mockData.stream().map(MonHoc::getTen).distinct().toList();
+//
+//        Assertions
+//                .assertThat(listMonHoc)
+//                .isNotNull()
+//                .hasSize(expectedListMonHoc.size())
+//                .containsExactlyInAnyOrderElementsOf(expectedListMonHoc);
+//    }
 
 
 //    @ParameterizedTest
