@@ -11,6 +11,7 @@ import com.example.btlsqa.model.DangKiHoc;
 import com.example.btlsqa.model.MonHoc;
 import com.example.btlsqa.model.SinhVien;
 import com.example.btlsqa.repository.*;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,16 +42,12 @@ public class SinhVienController {
         return "login";
     }
 
-    @RequestMapping(value = "/dashboard")
-    public String dashboard(Model model) throws ClassNotFoundException, SQLException {
-        return "dashboard";
-    }
-
     @PostMapping("/login")
     public String handleLogin(@RequestParam("username") String username,
             @RequestParam("password") String password,
             RedirectAttributes redirectAttributes,
-            Model model) throws ClassNotFoundException, SQLException {
+            Model model,
+            HttpSession session) throws ClassNotFoundException, SQLException {
 
         if (username.equals("") || password.equals("")) {
             redirectAttributes.addFlashAttribute("wrongInfo", "Hãy nhập đầy đủ tên đăng nhập và mật khẩu");
@@ -69,7 +66,7 @@ public class SinhVienController {
                 Optional<MonHoc> monHoc = monHocRepository.findByLopHocPhanId(i.getLopHocPhan().getId());
                 monHocList.add(monHoc.get());
             }
-            redirectAttributes.addFlashAttribute("sinhVien", sinhVien);
+            session.setAttribute("sinhVien", sinhVien);
 
             redirectAttributes.addFlashAttribute("dangKiHocList", dangKiHocList);
 
