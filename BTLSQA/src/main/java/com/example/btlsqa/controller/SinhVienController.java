@@ -1,16 +1,12 @@
 package com.example.btlsqa.controller;
 
-//import com.example.demo.DAO.DangKiHocDAO;
-//import com.example.demo.DAO.LopHocPhanDAO;
-//import com.example.demo.DAO.MonHocDAO;
-//import com.example.demo.DAO.SinhVienDAO;
-//import com.example.demo.Model.DangKiHoc;
-//import com.example.demo.Model.MonHoc;
-//import com.example.demo.Model.SinhVien;
 import com.example.btlsqa.model.DangKiHoc;
 import com.example.btlsqa.model.MonHoc;
 import com.example.btlsqa.model.SinhVien;
 import com.example.btlsqa.repository.*;
+import com.example.btlsqa.service.DangKiHocService;
+import com.example.btlsqa.service.MonHocService;
+import com.example.btlsqa.service.SinhVienService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,15 +23,11 @@ import java.util.Optional;
 public class SinhVienController {
 
     @Autowired
-    private MonHocTienQuyetRepository repository;
+    private SinhVienService SinhVienService;
     @Autowired
-    private MonHocRepository monHocRepository;
+    private DangKiHocService DangKiHocService;
     @Autowired
-    private LopHocPhanRepository lopHocPhanRepository;
-    @Autowired
-    private SinhVienRepository sinhVienRepository;
-    @Autowired
-    private DangKiHocRepository dangKiHocRepository;
+    private MonHocService monHocService;
 
     @RequestMapping(value = "/login")
     public String login(Model model) {
@@ -49,36 +41,30 @@ public class SinhVienController {
             Model model,
             HttpSession session) throws ClassNotFoundException, SQLException {
 
+        SinhVien sinhVien = SinhVienService.login(username, password);
+
         if (username.equals("") || password.equals("")) {
             redirectAttributes.addFlashAttribute("wrongInfo", "Hãy nhập đầy đủ tên đăng nhập và mật khẩu");
 
             return "redirect:/login";
         }
 
-        SinhVien sinhVien = sinhVienRepository.findByTenDangNhapVaMatKhau(username, password);
-
-        if (sinhVien != null) {
-            List<DangKiHoc> dangKiHocList = dangKiHocRepository.findAllLopHocPhanDangDangKiBySinhVienId(sinhVien.getId());
-
-            List<MonHoc> monHocList = new ArrayList<>();
-
-            for (DangKiHoc i : dangKiHocList) {
-                Optional<MonHoc> monHoc = monHocRepository.findByLopHocPhanId(i.getLopHocPhan().getId());
-                monHocList.add(monHoc.get());
-            }
-            session.setAttribute("sinhVien", sinhVien);
-
-            redirectAttributes.addFlashAttribute("dangKiHocList", dangKiHocList);
-
-            redirectAttributes.addFlashAttribute("monHocList", monHocList);
-
-            redirectAttributes.addFlashAttribute("idSv", sinhVien.getId());
-
-            return "redirect:/dashboard";
-        } else {
+        if (sinhVien == null) {
             redirectAttributes.addFlashAttribute("wrongInfo", "Sai tên đăng nhập hoặc mật khẩu");
 
             return "redirect:/login";
         }
+
+        List<DangKiHoc> listDangKiHoc = DangKiHocService.getListDangKiHocBySinhVienId(sinhVien.getId());
+
+        List<MonHoc> monHocList = monHocService.getAllMonHocByDangKiHocId(listDangKiHoc);
+        
+        session.setAttribute("sinhVien", sinhVien);
+
+        redirectAttributes.addFlashAttribute("dangKiHocList", listDangKiHoc);
+
+        redirectAttributes.addFlashAttribute("monHocList", monHocList);
+
+        return "redirect:/dashboard";
     }
 }
