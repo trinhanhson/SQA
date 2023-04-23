@@ -27,15 +27,6 @@ public class SinhVien {
     @Column(name = "ho_ten")
     private String hoTen;
 
-    @Column(name = "ngay_sinh")
-    private LocalDate ngaySinh;
-
-    @Column(name = "email")
-    private String email;
-
-    @Column(name = "so_dien_thoai")
-    private String soDienThoai;
-
     @Column(name = "ma_sinh_vien")
     private String maSinhVien;
 
@@ -46,9 +37,6 @@ public class SinhVien {
                 ", tenDangNhap='" + tenDangNhap + '\'' +
                 ", matKhau='" + matKhau + '\'' +
                 ", hoTen='" + hoTen + '\'' +
-                ", ngaySinh=" + ngaySinh +
-                ", email='" + email + '\'' +
-                ", soDienThoai='" + soDienThoai + '\'' +
                 ", maSinhVien='" + maSinhVien + '\'' +
                 '}';
     }
