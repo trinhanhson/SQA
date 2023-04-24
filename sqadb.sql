@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS sqadb.sinh_vien;
 DROP TABLE IF EXISTS sqadb.mon_hoc; 
 
 CREATE TABLE sqadb.sinh_vien (
-    id int primary key,
+    id int primary key AUTO_INCREMENT,
     ten_dang_nhap varchar(255),
     mat_khau varchar(255),
 	ho_ten varchar(255),
@@ -29,7 +29,7 @@ create table sqadb.mon_hoc_tien_quyet(
 );
 
 create table sqadb.lop_hoc_phan(
-	id int primary key,
+	id int primary key AUTO_INCREMENT,
     nhom_mon_hoc varchar(255),
     si_so_toi_da int,
     si_so_thuc_te int,
@@ -43,7 +43,7 @@ create table sqadb.lop_hoc_phan(
 );
 
 create table sqadb.dang_ki_hoc(
-	id int primary key,
+	id int primary key AUTO_INCREMENT,
     diem_tong_ket float,
     so_lan_hoc int,
     sinh_vien_id int,
@@ -161,51 +161,54 @@ values
 (44,"03",40,30,5,5,4,"305","Bùi Tùng B","INT1339"),
 (45,"03",40,30,6,5,4,"305","Bùi Tùng C","INT1339");
 
-INSERT INTO sqadb.dang_ki_hoc(id,diem_tong_ket,so_lan_hoc,sinh_vien_id,lop_hoc_phan_id)
+INSERT INTO sqadb.dang_ki_hoc(diem_tong_ket,so_lan_hoc,sinh_vien_id,lop_hoc_phan_id)
 VALUES
-(1,3.5,1,1,1),
-(2,3.2,1,1,4),
-(3,3.5,1,1,7),
-(4,3,1,1,12),
+(3.5,1,1,1),
+(3.2,1,1,4),
+(3.5,1,1,7),
+(3,1,1,12),
 
-(5,2,1,2,1),
-(6,4,1,2,4),
-(7,3.9,1,2,8),
-(8,3,1,2,10),
+(0,0,1,13),
 
 
-(1,3.5,1,3,1),
-(2,3.2,1,3,4),
-(3,3.5,1,3,7),
-(4,3,1,3,12),
+(2,1,2,1),
+(4,1,2,4),
+(3.9,1,2,8),
+(3,1,2,10),
 
-(9,2,1,3,13),
-(10,1,1,3,16),
-(11,3.9,2,3,19),
-(12,3,1,3,22),
-(13,3.9,1,3,25),
-(14,3,1,3,29),
 
-(1,3.5,1,4,1),
-(2,3.2,1,4,4),
-(3,3.5,1,4,7),
-(4,3,1,4,12),
+(3.5,1,3,1),
+(3.2,1,3,4),
+(3.5,1,3,7),
+(3,1,3,12),
 
-(15,4,1,4,13),
-(16,2.6,1,4,16),
-(17,2.9,2,4,19),
-(18,3,1,4,22),
-(19,3.5,1,4,25),
-(20,4,1,4,29),
+(2,1,3,13),
+(1,1,3,16),
+(3.9,2,3,19),
+(3,1,3,22),
+(3.9,1,3,25),
+(3,1,3,29),
 
-(1,3.5,1,5,1),
-(2,3.2,1,5,4),
-(3,3.5,1,5,7),
-(4,3,1,5,12),
+(3.5,1,4,1),
+(3.2,1,4,4),
+(3.5,1,4,7),
+(3,1,4,12),
 
-(21,4,1,5,13),
-(22,4,1,5,16),
-(23,3.9,1,5,19),
-(24,4,1,5,22),
-(25,4,2,5,25),
-(26,3.6,1,5,29);
+(4,1,4,13),
+(2.6,1,4,16),
+(2.9,2,4,19),
+(3,1,4,22),
+(3.5,1,4,25),
+(4,1,4,29),
+
+(3.5,1,5,1),
+(3.2,1,5,4),
+(3.5,1,5,7),
+(3,1,5,12),
+
+(4,1,5,13),
+(4,1,5,16),
+(3.9,1,5,19),
+(4,1,5,22),
+(4,2,5,25),
+(3.6,1,5,29);
