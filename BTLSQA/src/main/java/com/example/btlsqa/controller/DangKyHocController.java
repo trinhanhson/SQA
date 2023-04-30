@@ -43,8 +43,9 @@ public class DangKyHocController {
     }
     
     @PostMapping("/chonMon")
-    public String goToChonMon(){
-        return "redirect:/choose_a_subject";
+    public String goToChonMon(HttpSession session){
+        SinhVien sinhVien=(SinhVien) session.getAttribute("sinhVien");
+        return "redirect:/setid?idSv="+sinhVien.getId();
         
     }
 }
