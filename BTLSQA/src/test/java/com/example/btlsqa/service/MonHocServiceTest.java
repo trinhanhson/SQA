@@ -1,77 +1,129 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit4TestClass.java to edit this template
- */
 package com.example.btlsqa.service;
 
-import com.example.btlsqa.model.DangKiHoc;
+import com.example.btlsqa.MocData;
 import com.example.btlsqa.model.MonHoc;
-import com.example.btlsqa.model.SinhVien;
-import java.util.LinkedList;
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- *
- * @author ADMIN
- */
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
-@RunWith(SpringRunner.class)
-public class MonHocServiceTest extends AbstractTransactionalJUnit4SpringContextTests{
-   
+class MonHocServiceTest {
+
     @Autowired
     private MonHocService monHocService;
-    
-    public MonHocServiceTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
+
+    private List<MonHoc> mockMonHocList;
+
+    @BeforeEach
+    void setUp() {
+        mockMonHocList = MocData.getMockDataMonHoc();
     }
 
-//    @Test
-//    public void testGetAllMh() {
-//        System.out.println("getAllMh");
-//        MonHocService instance = new MonHocService();
-//        List<MonHoc> expResult = null;
-//        List<MonHoc> result = instance.getAllMh();
-//        assertEquals(expResult, result);
-//        fail("The test case is a prototype.");
-//    }
+    @AfterEach
+    void tearDown() {
+    }
 
     @Test
-    public void testGetAllMonHocByDangKiHocId_TestSuccess() {
-        System.out.println("getAllMonHocByDangKiHocId_TestSuccess: Lấy dúng môn học ứng với đăng kí học");
-        List<DangKiHoc> listDangKiHoc =  new LinkedList<>();
-        listDangKiHoc.add(new DangKiHoc(5, 0, 0, new SinhVien(1, "trinhanhson", "201201", "Trinh Anh Son", "B19DCCN562"), null));
-        List<MonHoc> expResult = new LinkedList<>();
-        expResult.add(new MonHoc("BAS1226","Xác suất thống kê",2));
-        List<MonHoc> result = monHocService.getAllMonHocByDangKiHocId(listDangKiHoc);
-        assertEquals(expResult.get(0).getId(), expResult.get(0).getId());
-        assertEquals(expResult.get(0).getSoTinChi(), expResult.get(0).getSoTinChi());
-        assertEquals(expResult.get(0).getTen(), expResult.get(0).getTen());
+    @DisplayName("tìm kiếm theo đúng id môn học")
+    public void searchByIdOrSubjectName_withId() {
+        String keyWord = "BAS1122";
+        List<MonHoc> listExpected = List.of(mockMonHocList.get(0));
+        List<MonHoc> listActual = monHocService.searchByIdOrSubjectName(keyWord);
+        assertEquals(listExpected.size(), listActual.size());
+        assertEquals(listExpected.get(0).getId(), listActual.get(0).getId());
+        assertEquals(listExpected.get(0).getTen(), listActual.get(0).getTen());
+        assertEquals(listExpected.get(0).getSoTinChi(), listActual.get(0).getSoTinChi());
     }
-    
+
+    @Test
+    @DisplayName("tìm kiếm theo id môn học chưa đầy đủ")
+    public void searchByIdOrSubjectName_withIdIncomplete() {
+        String keyWord = "INT";
+        List<MonHoc> listExpected = List.of(mockMonHocList.get(11), mockMonHocList.get(12),
+                mockMonHocList.get(13), mockMonHocList.get(14));
+        List<MonHoc> listActual = monHocService.searchByIdOrSubjectName(keyWord);
+        assertEquals(listExpected.size(), listActual.size());
+        for (int i = 0; i < listActual.size(); i++) {
+            assertEquals(listExpected.get(i).getId(), listActual.get(i).getId());
+            assertEquals(listExpected.get(i).getTen(), listActual.get(i).getTen());
+            assertEquals(listExpected.get(i).getSoTinChi(), listActual.get(i).getSoTinChi());
+        }
+    }
+
+    @Test
+    @DisplayName("tìm kiếm theo đúng tên môn học")
+    public void searchByIdOrSubjectName_withName() {
+        String keyWord = "Kỹ thuật số";
+        List<MonHoc> listExpected = List.of(mockMonHocList.get(10));
+        List<MonHoc> listActual = monHocService.searchByIdOrSubjectName(keyWord);
+        assertEquals(listExpected.size(), listActual.size());
+        assertEquals(listExpected.get(0).getId(), listActual.get(0).getId());
+        assertEquals(listExpected.get(0).getTen(), listActual.get(0).getTen());
+        assertEquals(listExpected.get(0).getSoTinChi(), listActual.get(0).getSoTinChi());
+    }
+
+    @Test
+    @DisplayName("tìm kiếm theo tên môn học chưa đầy đủ")
+    public void searchByIdOrSubjectName_withNameIncomplete() {
+        String keyWord = "học";
+        List<MonHoc> listExpected = List.of(mockMonHocList.get(1), mockMonHocList.get(3),
+                mockMonHocList.get(11), mockMonHocList.get(12));
+        List<MonHoc> listActual = monHocService.searchByIdOrSubjectName(keyWord);
+        assertEquals(listExpected.size(), listActual.size());
+        for (int i = 0; i < listActual.size(); i++) {
+            assertEquals(listExpected.get(i).getId(), listActual.get(i).getId());
+            assertEquals(listExpected.get(i).getTen(), listActual.get(i).getTen());
+            assertEquals(listExpected.get(i).getSoTinChi(), listActual.get(i).getSoTinChi());
+        }
+    }
+
+    @Test
+    @DisplayName("tìm kiếm theo từ khóa trống")
+    public void searchByIdOrSubjectName_keyEmpty() {
+        String keyWord = "";
+        List<MonHoc> listExpected = mockMonHocList;
+        List<MonHoc> listActual = monHocService.searchByIdOrSubjectName(keyWord);
+        assertEquals(listExpected.size(), listActual.size());
+        for (int i = 0; i < listActual.size(); i++) {
+            assertEquals(listExpected.get(i).getId(), listActual.get(i).getId());
+            assertEquals(listExpected.get(i).getTen(), listActual.get(i).getTen());
+            assertEquals(listExpected.get(i).getSoTinChi(), listActual.get(i).getSoTinChi());
+        }
+    }
+
+    @Test
+    @DisplayName("tìm kiếm theo từ khóa không tồn tại trong danh sách môn học")
+    public void searchByIdOrSubjectName_listEmpty() {
+        String keyWord = "FFFFF";
+        List<MonHoc> listActual = monHocService.searchByIdOrSubjectName(keyWord);
+        assertThat(listActual).isEmpty();
+    }
+
+    @DisplayName("kiểm tra chọn môn học thành công")
+    @Test
+    public void checkPrerequisitesSubject_success() {
+        int idSinhVien = 1;
+        String idMonHoc = "BAS1150";
+        boolean expected = true;
+        boolean actual = monHocService.checkPrerequisitesSubject(idSinhVien, idMonHoc);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("kiểm tra chọn môn học thất bại")
+    public void checkPrerequisitesSubject_fail() {
+        int idSinhVien = 1;
+        String idMonHoc = "BAS1122";
+        boolean expected = false;
+        boolean actual = monHocService.checkPrerequisitesSubject(idSinhVien, idMonHoc);
+        assertEquals(expected, actual);
+    }
 }

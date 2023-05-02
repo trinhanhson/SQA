@@ -17,11 +17,11 @@
                 <div class="card-body">
                     <form th:action="@{/choose}" method="get">
                         <div class="form-group">
-                            <label for="maMonHoc">Mã môn học hoặc tên môn học</label>
+                            <label for="maMonHoc">Nhập mã hoặc tên của môn học</label>
                             <input type="text" class="form-control" id="maMonHoc" name="maMonHoc"
-                                   placeholder="Enter mmh or name" th:value="${maMonHoc}">
+                                   placeholder="Ví dụ BAS1201 hoặc Đại số" th:value="${maMonHoc}">
                         </div>
-                        <button type="submit" class="btn btn-primary">Search</button>
+                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
                     </form>
                 </div>
             </div>
@@ -62,5 +62,19 @@
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        var alertElement = $(".alert-success");
+        if (alertElement.length > 0) {
+            var currentText = alertElement.text();
+            setTimeout(function () {
+                alertElement.text("").hide();
+            }, 2000);
+        }
+    });
+</script>
 </body>
 </html>

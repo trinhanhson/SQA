@@ -46,6 +46,5 @@ public class DangKyHocController {
     public String goToChonMon(HttpSession session){
         SinhVien sinhVien=(SinhVien) session.getAttribute("sinhVien");
         return "redirect:/setid?idSv="+sinhVien.getId();
-        
     }
 }
