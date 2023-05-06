@@ -59,6 +59,10 @@ public class SinhVienController {
 
         List<MonHoc> monHocList = monHocService.getAllMonHocByDangKiHocId(listDangKiHoc);
         
+        int tkbMatrix[][]= DangKiHocService.taoTkbMatrix(listDangKiHoc);
+        
+        session.setAttribute("tkbMatrix", tkbMatrix);
+        
         session.setAttribute("sinhVien", sinhVien);
 
         redirectAttributes.addFlashAttribute("dangKiHocList", listDangKiHoc);
