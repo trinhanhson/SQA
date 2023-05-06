@@ -68,7 +68,7 @@ public class LopHocPhanController {
 
             dk.setDiemTongKet(0);
             dk.setLopHocPhan(trueLhp);
-            dk.setSoLanHoc(0);
+            dk.setSoLanHoc(-1);
             dk.setSinhVien(sinhVien);
 
             listDangKiHocMoi.add(dk);
@@ -103,7 +103,7 @@ public class LopHocPhanController {
             }
             dk.setDiemTongKet(0);
             dk.setLopHocPhan(trueLhp);
-            dk.setSoLanHoc(0);
+            dk.setSoLanHoc(-1);
 
             listDangKiHocMoi.add(dk);
 

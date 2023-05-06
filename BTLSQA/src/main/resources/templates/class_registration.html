@@ -1,66 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Đăng kí tín</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Đăng kí tín</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <style>
+            .button-container {
+                display: flex;
+                justify-content: space-between;
+            }
+        </style>
+    </head>
+    <body>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h2 class="text-center">Đăng kí tín</h2>
-            <form>
-                <div class="form-group">
-                    <label >Tên sinh viên:</label>
-                    <h5 class="card-title mb-4" th:text="${sinhVien.hoTen}"></h5>
-                    <!--                    <input type="text" class="form-control" id="txtTenSV" placeholder="Nhập tên sinh viên">-->
-                </div>
-                <div class="form-group">
-                    <label >Mã sinh viên:</label>
-                    <h5 class="card-title mb-4" th:text="${sinhVien.maSinhVien}"></h5>
-                    <!--                    <input type="text" class="form-control" id="txtMaSV" placeholder="Nhập mã sinh viên">-->
-                </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h2 class="text-center">Đăng kí tín</h2>
+                    <form>
+                        <div class="form-group">
+                            <label >Tên sinh viên:</label>
+                            <h5 class="card-title mb-4" th:text="${sinhVien.hoTen}"></h5>
+                            <!--                    <input type="text" class="form-control" id="txtTenSV" placeholder="Nhập tên sinh viên">-->
+                        </div>
+                        <div class="form-group">
+                            <label >Mã sinh viên:</label>
+                            <h5 class="card-title mb-4" th:text="${sinhVien.maSinhVien}"></h5>
+                            <!--                    <input type="text" class="form-control" id="txtMaSV" placeholder="Nhập mã sinh viên">-->
+                        </div>
 
-                <div class="form-group">
-                    <label >Các lớp đã đăng ký</label>
-                    <!--                    <input type="text" class="form-control" id="txtLop2" placeholder="Nhập lớp 2">-->
+                        <div class="form-group">
+                            <label >Các lớp đã đăng ký</label>
+                            <!--                    <input type="text" class="form-control" id="txtLop2" placeholder="Nhập lớp 2">-->
+                            <label style="float: right;" >Số tín chỉ đã đăng kí:</label>
+                            <h5 class="card-title mb-4" th:text="${stc}"></h5>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Mã MH</th>
+                                    <th>Tên MH</th>
+                                    <th>Nhóm MH</th>
+                                    <th>STC</th>
+                                    <th>Trạng thái</th>
+                                    <!--<th>Sửa</th>-->
+                                    <th>Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!--Dữ liệu bảng-->
+                                <!--                    đoạn này ô tạo đẩy dữ liệu giống bên file choose_a_subject nhé.-->
+                                <tr th:each="dangKiHoc : ${listDangKiHocMoi}">
+                                    <td th:text="${dangKiHoc.lopHocPhan.monHoc.id}"></td>
+                                    <td th:text="${dangKiHoc.lopHocPhan.monHoc.ten}"></td>
+                                    <td th:text="${dangKiHoc.lopHocPhan.nhomMonHoc}"></td>
+                                    <td th:text="${dangKiHoc.lopHocPhan.monHoc.soTinChi}"></td>
+                                    <td th:if="${dangKiHoc.soLanHoc == 0}">Đã lưu lớp học phần</td>
+                                    <td th:if="${dangKiHoc.soLanHoc == -1}">Chưa lưu lớp học phần</td>
+                                    <td>
+                                        <a class="h4 mr-3" th:href="@{'/xoaDangKi/'+${dangKiHoc.id}}">Xóa</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="button-container">
+                            <button type="button" class="btn btn-default">Đăng xuất</button>
+                            <button type="button" class="btn btn-primary">Tiếp tục đăng ký</button>
+                            <button type="button" class="btn btn-success">Lưu đăng ký</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label >Số tín chỉ đã đăng kí:</label>
-                    <h5 class="card-title mb-4" th:text="${sinhVien.hoTen}"></h5>
-                    // Ô dùng Thymeleaf để đẩy dữ liệu cho phù hợp nhé
-                    <!--                    <h5 class="card-title mb-4" th:text="${sinhVien.maSinhVien}"></h5>-->
-                </div>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Mã MH</th>
-                        <th>Tên MH</th>
-                        <th>Nhóm MH</th>
-                        <th>STC</th>
-                        <th>Trạng thái</th>
-                        <th>Sửa</th>
-                        <th>Xóa</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <!--Dữ liệu bảng-->
-                    <!--                    đoạn này ô tạo đẩy dữ liệu giống bên file choose_a_subject nhé.-->
-                    </tbody>
-                </table>
-                <div class="form-group">
-                    <button type="button" class="btn btn-default">Đăng xuất</button>
-                    <button type="button" class="btn btn-primary">Tiếp tục đăng ký</button>
-                    <button type="button" class="btn btn-success">Lưu đăng ký</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-</div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</body>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </body>
 </html>

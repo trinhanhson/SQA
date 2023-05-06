@@ -54,9 +54,9 @@ public class SinhVienController {
 
             return "redirect:/login";
         }
-
+        
         List<DangKiHoc> listDangKiHocMoi = dangKiHocService.getListDangKiHocBySinhVienId(sinhVien.getId());
-    
+        
         session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);
         
         session.setAttribute("sinhVien", sinhVien);
