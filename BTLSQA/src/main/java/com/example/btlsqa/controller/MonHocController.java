@@ -32,7 +32,6 @@ public class MonHocController {
 //        idSinhVien = idSv;
 //        return "redirect:/choose";
 //    }
-
     @RequestMapping("/subject")
     public String searchByIdOrSubjectName(Model model,
             @RequestParam(value = "maMonHoc", name = "maMonHoc", required = false, defaultValue = "") String maMonHoc, HttpSession session) {
@@ -47,8 +46,13 @@ public class MonHocController {
         return "choose_a_subject";
     }
 
-    @GetMapping("/choose/{id}")
-    public String checkChooseSubject(@PathVariable("id") String id, Model model, RedirectAttributes ra) {
+    @GetMapping("/subject/{id}")
+    public String checkChooseSubject(@PathVariable("id") String id, Model model, RedirectAttributes ra, HttpSession session) {
+
+        SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
+        if (sinhVien == null) {
+            return "redirect:/login";
+        }
         boolean flag = monHocService.checkPrerequisitesSubject(idSinhVien, id);
         if (flag) {
             List<LopHocPhan> listLopHocPhan = lopHocPhanRepository.findByMonHocId(id);
