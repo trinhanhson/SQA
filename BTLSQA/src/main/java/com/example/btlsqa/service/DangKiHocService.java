@@ -29,10 +29,19 @@ public class DangKiHocService {
 
         for (DangKiHoc i : listDangKiHoc) {
             for (int j = 0; j < i.getLopHocPhan().getSoTiet(); j++) {
-                tbkMatrix[i.getLopHocPhan().getThu()][i.getLopHocPhan().getTietBatDau()+j] = i.getLopHocPhan().getId();
+                tbkMatrix[i.getLopHocPhan().getThu()][i.getLopHocPhan().getTietBatDau() + j] = i.getLopHocPhan().getId();
             }
         }
-        
+
         return tbkMatrix;
+    }
+
+    public DangKiHoc getDangKiHocMoi(String idMonHoc, List<DangKiHoc> listDangKiHocMoi) {
+        for (DangKiHoc i : listDangKiHocMoi) {
+            if (idMonHoc.equals(i.getLopHocPhan().getMonHoc().getId())) {
+                return i;
+            }
+        }
+        return null;
     }
 }

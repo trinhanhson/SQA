@@ -56,7 +56,7 @@
                                         <!-- Dữ liệu danh sách lớp học phần -->
                                         <tr th:each="lop : ${listLopHocPhan}">
                                             <td>
-                                                <input type="checkbox" name="lophoc" th:value="${lop.id}" onclick="uncheckAll(this)">
+                                                <input type="checkbox" name="lophoc" th:value="${lop.id}" onclick="uncheckAll(this)" th:checked="${lop.id == id}">
                                             </td>
                                             <td th:text="${lop.monHoc.id}"></td>
                                             <td th:text="${lop.monHoc.ten}"></td>
@@ -72,6 +72,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
+                                <input type="hidden" name="id" th:value="${id}">
                                 <!-- Danh sách các lớp học phần đã chọn -->
                                 <div class="text-right">
                                     <button type="submit" class="btn btn-primary">Xác nhận</button>

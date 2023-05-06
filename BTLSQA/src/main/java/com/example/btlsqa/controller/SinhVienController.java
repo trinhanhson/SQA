@@ -55,20 +55,16 @@ public class SinhVienController {
             return "redirect:/login";
         }
 
-        List<DangKiHoc> listDangKiHoc = DangKiHocService.getListDangKiHocBySinhVienId(sinhVien.getId());
-
-        List<MonHoc> monHocList = monHocService.getAllMonHocByDangKiHocId(listDangKiHoc);
-        
-        int tkbMatrix[][]= DangKiHocService.taoTkbMatrix(listDangKiHoc);
+        List<DangKiHoc> listDangKiHocMoi = DangKiHocService.getListDangKiHocBySinhVienId(sinhVien.getId());
+    
+        session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);
+                
+        int tkbMatrix[][]= DangKiHocService.taoTkbMatrix(listDangKiHocMoi);
         
         session.setAttribute("tkbMatrix", tkbMatrix);
         
         session.setAttribute("sinhVien", sinhVien);
 
-        redirectAttributes.addFlashAttribute("dangKiHocList", listDangKiHoc);
-
-        redirectAttributes.addFlashAttribute("monHocList", monHocList);
-
-        return "redirect:/registration";
+        return "redirect:/class_registration";
     }
 }

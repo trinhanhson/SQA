@@ -1,9 +1,11 @@
 package com.example.btlsqa.controller;
 
+import com.example.btlsqa.model.DangKiHoc;
 import com.example.btlsqa.model.LopHocPhan;
 import com.example.btlsqa.model.MonHoc;
 import com.example.btlsqa.model.SinhVien;
 import com.example.btlsqa.repository.*;
+import com.example.btlsqa.service.DangKiHocService;
 import com.example.btlsqa.service.MonHocService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,16 +25,13 @@ public class MonHocController {
     @Autowired
     private MonHocService monHocService;
     @Autowired
+    private DangKiHocService dangKiHocService;
+    @Autowired
     private LopHocPhanRepository lopHocPhanRepository;
 
     private int idSinhVien = 0;
 
-//    @GetMapping("/setid")
-//    public String setIdSv(RedirectAttributes ra, @RequestParam("idSv") int idSv) {
-//        idSinhVien = idSv;
-//        return "redirect:/choose";
-//    }
-    @RequestMapping("/subject")
+    @RequestMapping("/choose")
     public String searchByIdOrSubjectName(Model model,
             @RequestParam(value = "maMonHoc", name = "maMonHoc", required = false, defaultValue = "") String maMonHoc, HttpSession session) {
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
@@ -46,7 +45,7 @@ public class MonHocController {
         return "choose_a_subject";
     }
 
-    @GetMapping("/subject/{id}")
+    @GetMapping("/choose/{id}")
     public String checkChooseSubject(@PathVariable("id") String id, Model model, RedirectAttributes ra, HttpSession session) {
 
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
@@ -55,12 +54,21 @@ public class MonHocController {
         }
         boolean flag = monHocService.checkPrerequisitesSubject(idSinhVien, id);
         if (flag) {
+
+            DangKiHoc dk = dangKiHocService.getDangKiHocMoi(id, (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi"));
+            if (dk != null) {
+                model.addAttribute("id", dk.getLopHocPhan().getId());
+            }
+            else{
+                model.addAttribute("id", -1);
+            }
+
             List<LopHocPhan> listLopHocPhan = lopHocPhanRepository.findByMonHocId(id);
             model.addAttribute("listLopHocPhan", listLopHocPhan);
             return "select_class_section";
         } else {
             ra.addFlashAttribute("message", "Sinh viên chưa hoàn thành môn tiên quyết của môn học này");
-            return "redirect:/subject";
+            return "redirect:/choose";
         }
     }
 }
