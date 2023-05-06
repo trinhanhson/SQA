@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -36,7 +37,7 @@ public class LopHocPhanController {
     private DangKiHocRepository dangKiHocRepository;
 
     @PostMapping("/chonLopHocPhan")
-    public String chonLopHocPhan(@RequestParam("lophoc") long newId, @RequestParam("id") long oldId, HttpSession session) {
+    public String chonLopHocPhan(@RequestParam("lophoc") long newId, @RequestParam("id") long oldId, HttpSession session,RedirectAttributes ra) {
 
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
         if (sinhVien == null) {
@@ -52,10 +53,11 @@ public class LopHocPhanController {
 
             LopHocPhan trueLhp = lhp.get();
 
-            int tkbMatrix[][] = (int[][]) session.getAttribute("tkbMatrix");
+            String tkbMatrix[][] = (String[][]) session.getAttribute("tkbMatrix");
 
             for (int i = 0; i < trueLhp.getSoTiet(); i++) {
-                if (tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i] != 0) {
+                if (tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i] != null) {
+                    ra.addAttribute("message", "Thời khóa biểu bị trùng với học phần khác");
                     return "redirect:/choose/" + trueLhp.getMonHoc().getId();
                 }
             }
@@ -81,10 +83,10 @@ public class LopHocPhanController {
 
             LopHocPhan trueLhp = lhp.get();
 
-            int tkbMatrix[][] = (int[][]) session.getAttribute("tkbMatrix");
+            String tkbMatrix[][] = (String[][]) session.getAttribute("tkbMatrix");
 
             for (int i = 0; i < trueLhp.getSoTiet(); i++) {
-                if (tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i] != 0) {
+                if (tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i] != null&&tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i].equals(trueLhp.getMonHoc().getId())) {
                     return "redirect:/choose/" + trueLhp.getMonHoc().getId();
                 }
             }

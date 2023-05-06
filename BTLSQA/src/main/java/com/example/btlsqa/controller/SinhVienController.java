@@ -23,9 +23,9 @@ import java.util.Optional;
 public class SinhVienController {
 
     @Autowired
-    private SinhVienService SinhVienService;
+    private SinhVienService sinhVienService;
     @Autowired
-    private DangKiHocService DangKiHocService;
+    private DangKiHocService dangKiHocService;
     @Autowired
     private MonHocService monHocService;
 
@@ -41,7 +41,7 @@ public class SinhVienController {
             Model model,
             HttpSession session) throws ClassNotFoundException, SQLException {
 
-        SinhVien sinhVien = SinhVienService.login(username, password);
+        SinhVien sinhVien = sinhVienService.login(username, password);
 
         if (username.equals("") || password.equals("")) {
             redirectAttributes.addFlashAttribute("wrongInfo", "Hãy nhập đầy đủ tên đăng nhập và mật khẩu");
@@ -55,13 +55,9 @@ public class SinhVienController {
             return "redirect:/login";
         }
 
-        List<DangKiHoc> listDangKiHocMoi = DangKiHocService.getListDangKiHocBySinhVienId(sinhVien.getId());
+        List<DangKiHoc> listDangKiHocMoi = dangKiHocService.getListDangKiHocBySinhVienId(sinhVien.getId());
     
         session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);
-                
-        int tkbMatrix[][]= DangKiHocService.taoTkbMatrix(listDangKiHocMoi);
-        
-        session.setAttribute("tkbMatrix", tkbMatrix);
         
         session.setAttribute("sinhVien", sinhVien);
 

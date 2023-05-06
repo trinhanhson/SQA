@@ -24,12 +24,12 @@ public class DangKiHocService {
         return dangKiHocRepository.findAllLopHocPhanDangDangKiBySinhVienId(sinhVienId);
     }
 
-    public int[][] taoTkbMatrix(List<DangKiHoc> listDangKiHoc) {
-        int tbkMatrix[][] = new int[7][9];
+    public String[][] taoTkbMatrix(List<DangKiHoc> listDangKiHoc) {
+        String tbkMatrix[][] = new String[7][9];
 
         for (DangKiHoc i : listDangKiHoc) {
             for (int j = 0; j < i.getLopHocPhan().getSoTiet(); j++) {
-                tbkMatrix[i.getLopHocPhan().getThu()][i.getLopHocPhan().getTietBatDau() + j] = i.getLopHocPhan().getId();
+                tbkMatrix[i.getLopHocPhan().getThu()][i.getLopHocPhan().getTietBatDau() + j] = i.getLopHocPhan().getMonHoc().getId();
             }
         }
 
