@@ -33,7 +33,7 @@ public class MonHocController {
 //        return "redirect:/choose";
 //    }
 
-    @RequestMapping("/choose")
+    @RequestMapping("/subject")
     public String searchByIdOrSubjectName(Model model,
             @RequestParam(value = "maMonHoc", name = "maMonHoc", required = false, defaultValue = "") String maMonHoc, HttpSession session) {
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
@@ -52,11 +52,11 @@ public class MonHocController {
         boolean flag = monHocService.checkPrerequisitesSubject(idSinhVien, id);
         if (flag) {
             List<LopHocPhan> listLopHocPhan = lopHocPhanRepository.findByMonHocId(id);
-            model.addAttribute("listLopHocPhan", listLopHocPhan);
-            return "select_class_section";
+            ra.addFlashAttribute("listLopHocPhan", listLopHocPhan);
+            return "redirect:/module";
         } else {
             ra.addFlashAttribute("message", "Sinh viên chưa hoàn thành môn tiên quyết của môn học này");
-            return "redirect:/choose";
+            return "redirect:/subject";
         }
     }
 }

@@ -14,7 +14,6 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -22,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author ADMIN
  */
 @Controller
-public class DangKyHocController {
+public class LopHocPhanController {
 
     @Autowired
     private MonHocTienQuyetRepository repository;
@@ -35,18 +34,12 @@ public class DangKyHocController {
     @Autowired
     private DangKiHocRepository dangKiHocRepository;
 
-    @RequestMapping(value = "/registration")
-    public String dashboard(Model model, HttpSession session) {
+    @RequestMapping("/module")
+    public String module(HttpSession session) {
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
-        if(sinhVien==null){
+        if (sinhVien == null) {
             return "redirect:/login";
         }
-        model.addAttribute("sinhVien", sinhVien);
-        return "class_registration";
-    }
-    
-    @PostMapping("/chonMon")
-    public String goToChonMon(HttpSession session){
-        return "redirect:/subject";
+        return "select_class_section";
     }
 }
