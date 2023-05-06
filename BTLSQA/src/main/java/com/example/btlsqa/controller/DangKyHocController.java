@@ -12,6 +12,7 @@ import com.example.btlsqa.repository.LopHocPhanRepository;
 import com.example.btlsqa.repository.MonHocRepository;
 import com.example.btlsqa.repository.MonHocTienQuyetRepository;
 import com.example.btlsqa.repository.SinhVienRepository;
+import com.example.btlsqa.service.DangKiHocService;
 import com.example.btlsqa.service.MonHocService;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
@@ -37,7 +38,7 @@ public class DangKyHocController {
     @Autowired
     private SinhVienRepository sinhVienRepository;
     @Autowired
-    private DangKiHocRepository dangKiHocRepository;
+    private DangKiHocService dangKiHocService;
 
     @RequestMapping(value = "/class_registration")
     public String dashboard(Model model, HttpSession session) {
@@ -46,15 +47,19 @@ public class DangKyHocController {
             return "redirect:/login";
         }
         model.addAttribute("sinhVien", sinhVien);
-        
-        List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>)session.getAttribute("listDangKiHocMoi");
+
+        List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi");
+
+        String tkbMatrix[][] = dangKiHocService.taoTkbMatrix(listDangKiHocMoi);
+
+        session.setAttribute("tkbMatrix", tkbMatrix);
 
         List<MonHoc> monHocList = monHocService.getAllMonHocByDangKiHocId(listDangKiHocMoi);
-        
+
         model.addAttribute("listDangKiHocMoi", listDangKiHocMoi);
-        
+
         model.addAttribute("monHocList", monHocList);
-        
+
         return "class_registration";
     }
 
