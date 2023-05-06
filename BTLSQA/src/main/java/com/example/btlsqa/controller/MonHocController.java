@@ -52,8 +52,8 @@ public class MonHocController {
         boolean flag = monHocService.checkPrerequisitesSubject(idSinhVien, id);
         if (flag) {
             List<LopHocPhan> listLopHocPhan = lopHocPhanRepository.findByMonHocId(id);
-            ra.addFlashAttribute("listLopHocPhan", listLopHocPhan);
-            return "redirect:/module";
+            model.addAttribute("listLopHocPhan", listLopHocPhan);
+            return "select_class_section";
         } else {
             ra.addFlashAttribute("message", "Sinh viên chưa hoàn thành môn tiên quyết của môn học này");
             return "redirect:/subject";

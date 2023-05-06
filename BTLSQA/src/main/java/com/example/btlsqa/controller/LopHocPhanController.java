@@ -4,6 +4,7 @@
  */
 package com.example.btlsqa.controller;
 
+import com.example.btlsqa.model.LopHocPhan;
 import com.example.btlsqa.model.SinhVien;
 import com.example.btlsqa.repository.DangKiHocRepository;
 import com.example.btlsqa.repository.LopHocPhanRepository;
@@ -11,9 +12,11 @@ import com.example.btlsqa.repository.MonHocRepository;
 import com.example.btlsqa.repository.MonHocTienQuyetRepository;
 import com.example.btlsqa.repository.SinhVienRepository;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -34,12 +37,6 @@ public class LopHocPhanController {
     @Autowired
     private DangKiHocRepository dangKiHocRepository;
 
-    @RequestMapping("/module")
-    public String module(HttpSession session) {
-        SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
-        if (sinhVien == null) {
-            return "redirect:/login";
-        }
-        return "select_class_section";
-    }
+
+    
 }
