@@ -32,8 +32,9 @@
                         <div class="form-group">
                             <label >Các lớp đã đăng ký</label>
                             <!--                    <input type="text" class="form-control" id="txtLop2" placeholder="Nhập lớp 2">-->
-                            <label style="float: right;" >Số tín chỉ đã đăng kí:</label>
-                            <h5 class="card-title mb-4" th:text="${stc}"></h5>
+                            <div  style="float: right;">
+                                <label class="card-title mb-4" th:text="'Số tín chỉ đã đăng kí:'+${stc}"></label>
+                            </div>
                         </div>
                         <table class="table table-bordered">
                             <thead>
@@ -64,8 +65,12 @@
                             </tbody>
                         </table>
                         <div class="button-container">
-                            <button type="button" class="btn btn-default">Đăng xuất</button>
-                            <button type="button" class="btn btn-primary">Tiếp tục đăng ký</button>
+                            <form action="/logout" method="post">
+                                <button type="button" class="btn btn-default">Đăng xuất</button>
+                            </form>
+                            <form action="/choose" method="post">
+                                <button type="button" class="btn btn-primary">Tiếp tục đăng ký</button>
+                            </form>
                             <button type="button" class="btn btn-success">Lưu đăng ký</button>
                         </div>
                     </form>
