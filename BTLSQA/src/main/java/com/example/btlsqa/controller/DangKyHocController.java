@@ -38,8 +38,11 @@ public class DangKyHocController {
     @RequestMapping(value = "/dashboard")
     public String dashboard(Model model, HttpSession session) {
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
+        if(sinhVien==null){
+            return "redirect:/login";
+        }
         model.addAttribute("sinhVien", sinhVien);
-        return "dashboard";
+        return "class_registration";
     }
     
     @PostMapping("/chonMon")
