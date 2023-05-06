@@ -35,7 +35,7 @@ public class DangKyHocController {
     @Autowired
     private DangKiHocRepository dangKiHocRepository;
 
-    @RequestMapping(value = "/dashboard")
+    @RequestMapping(value = "/class_registration")
     public String dashboard(Model model, HttpSession session) {
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
         if(sinhVien==null){

@@ -65,6 +65,6 @@ public class SinhVienController {
 
         redirectAttributes.addFlashAttribute("monHocList", monHocList);
 
-        return "redirect:/dashboard";
+        return "redirect:/class_registration";
     }
 }
