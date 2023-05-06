@@ -1,0 +1,66 @@
+
+Jmeter KHÔNG được dùng cho:
+a.Kiểm thử chức năng
+b.Kiểm thử khả năng tiếp cận____
+c.Kiểm thử máy chủ cơ sở dữ liệu
+d.Kiểm thử ứng dụng web
+
+)Hệ điều hành nào KHÔNG hỗ trợ Jmeter:
+a.Mac OS
+b.Windows OS
+c.UNIX___
+D.linux
+
+Jmeter không hỗ trợ:
+a.Kiểm thử chức năng
+b.Kiểm thử phân phối
+c.Kiểm thử tải
+d.Kiểm thử chấp nhận___
+
+)Jmeter có thể được dùng để kiểm tra hiệu năng của:
+a.Tài nguyên động(có thể thay đổi theo thời gian)
+b.Tài nguyên tĩnh(cố định theo thời gian)
+c.Cả 2 ý trên đều đúng___
+d.Cả A và B đều sai
+
+1)Đâu là giao thức có thể được kiểm thử bởi jmeter:
+a.HTTP
+b.TCP
+c.IMAP
+d.Tất cả các phương án trên___
+
+)Loại ứng dụng nào sau đây có thể được kiểm thử bằng jmeter:
+a.Websites
+b.Web services both - REST and SOAP
+c.Database
+d.Tất cả những ứng dụng trên___
+
+) Bộ điều khiển logic(Logic Controllers) xác định:
+a.Nguồn của request được thực thi
+b.Cấp độ của request được thực thi
+c.Loại request được thực thi
+d.Thứ tự thực hiện yêu cầu của người dùng___
+
+Cái nào sau đây không phải là mẫu thử của Jmeter?
+a.MongoDB Script
+B.FTP request
+C.HTTP Request
+D.Kết quả giám sát(monitor results) ___
+
+Controller nào sau đây có thể làm cho user request chạy với số lần được chỉ định
+A.Random controller
+B.Logic controller
+C.Loop controller___
+D.Không có cái nào đúng
+
+)Loại kiểm thử nào sử dụng nhiều hệ thống để thực hiện stress test
+a.Kiểm thử ứng dụng web
+b.Kiểm thử chức năng
+c.Kiểm thử tải
+d.Kiểm thử phân phối___
+
+)Ý nào sau đây định nghĩa về Assertion trong jmeter là đúng?
+a.Báo cáo lại kết quả kiểm thử
+b.Đặt tiêu chí kiểm thử____
+c.Cho phép các kịch bản kiểm thử đồng thời
+d.Không có ý nào đúng
