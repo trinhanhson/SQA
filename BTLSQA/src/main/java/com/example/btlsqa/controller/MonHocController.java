@@ -55,11 +55,10 @@ public class MonHocController {
         boolean flag = monHocService.checkPrerequisitesSubject(idSinhVien, id);
         if (flag) {
 
-            DangKiHoc dk = dangKiHocService.getDangKiHocMoi(id, (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi"));
+            DangKiHoc dk = getDangKiHocMoi(id, (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi"));
             if (dk != null) {
                 model.addAttribute("id", dk.getLopHocPhan().getId());
-            }
-            else{
+            } else {
                 model.addAttribute("id", -1);
             }
 
@@ -70,5 +69,14 @@ public class MonHocController {
             ra.addFlashAttribute("message", "Sinh viên chưa hoàn thành môn tiên quyết của môn học này");
             return "redirect:/choose";
         }
+    }
+
+    private DangKiHoc getDangKiHocMoi(String idMonHoc, List<DangKiHoc> listDangKiHocMoi) {
+        for (DangKiHoc i : listDangKiHocMoi) {
+            if (idMonHoc.equals(i.getLopHocPhan().getMonHoc().getId())) {
+                return i;
+            }
+        }
+        return null;
     }
 }

@@ -5,7 +5,6 @@
 package com.example.btlsqa.controller;
 
 import com.example.btlsqa.model.DangKiHoc;
-import com.example.btlsqa.model.MonHoc;
 import com.example.btlsqa.model.SinhVien;
 import com.example.btlsqa.repository.DangKiHocRepository;
 import com.example.btlsqa.repository.LopHocPhanRepository;
@@ -21,8 +20,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -59,7 +56,7 @@ public class DangKyHocController {
             stc += i.getLopHocPhan().getMonHoc().getSoTinChi();
         }
 
-        String tkbMatrix[][] = dangKiHocService.taoTkbMatrix(listDangKiHocMoi);
+        String tkbMatrix[][] = taoTkbMatrix(listDangKiHocMoi);
 
         session.setAttribute("tkbMatrix", tkbMatrix);
 
@@ -93,22 +90,34 @@ public class DangKyHocController {
     }
 
     @PostMapping("/luuDangKi")
-    public String luuDangKi (HttpSession session){
+    public String luuDangKi(HttpSession session) {
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
         if (sinhVien == null) {
             return "redirect:/login";
         }
         List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi");
-        
+
         dangKiHocRepository.deleteBySinhVien(sinhVien);
-        
-        for(DangKiHoc i : listDangKiHocMoi){
+
+        for (DangKiHoc i : listDangKiHocMoi) {
             i.setSoLanHoc(0);
             dangKiHocRepository.save(i);
         }
-        
+
         session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);
-        
+
         return "redirect:/class_registration";
+    }
+
+    private String[][] taoTkbMatrix(List<DangKiHoc> listDangKiHoc) {
+        String tbkMatrix[][] = new String[7][9];
+
+        for (DangKiHoc i : listDangKiHoc) {
+            for (int j = 0; j < i.getLopHocPhan().getSoTiet(); j++) {
+                tbkMatrix[i.getLopHocPhan().getThu()][i.getLopHocPhan().getTietBatDau() + j] = i.getLopHocPhan().getMonHoc().getId();
+            }
+        }
+
+        return tbkMatrix;
     }
 }
