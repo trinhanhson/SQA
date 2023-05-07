@@ -7,6 +7,7 @@ package com.example.btlsqa.controller;
 import com.example.btlsqa.model.DangKiHoc;
 import com.example.btlsqa.model.MonHoc;
 import com.example.btlsqa.model.SinhVien;
+import com.example.btlsqa.repository.DangKiHocRepository;
 import com.example.btlsqa.repository.LopHocPhanRepository;
 import com.example.btlsqa.repository.MonHocTienQuyetRepository;
 import com.example.btlsqa.repository.SinhVienRepository;
@@ -40,6 +41,8 @@ public class DangKyHocController {
     private SinhVienRepository sinhVienRepository;
     @Autowired
     private DangKiHocService dangKiHocService;
+    @Autowired
+    private DangKiHocRepository dangKiHocRepository;
 
     @GetMapping("/class_registration")
     public String dashboard(Model model, HttpSession session) {
@@ -59,7 +62,7 @@ public class DangKyHocController {
         String tkbMatrix[][] = dangKiHocService.taoTkbMatrix(listDangKiHocMoi);
 
         session.setAttribute("tkbMatrix", tkbMatrix);
-        
+
         model.addAttribute("stc", stc);
 
         model.addAttribute("listDangKiHocMoi", listDangKiHocMoi);
@@ -72,12 +75,12 @@ public class DangKyHocController {
         return "redirect:/choose";
     }
 
-    @PostMapping("/xoaDangKi/{id}")
+    @GetMapping("/xoaDangKi/{id}")
     public String xoaDangKi(@PathVariable("id") int id, HttpSession session) {
         List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi");
 
         for (int i = 0; i < listDangKiHocMoi.size(); i++) {
-            if (listDangKiHocMoi.get(i).getLopHocPhan().getId() == id) {
+            if (listDangKiHocMoi.get(i).getId() == id) {
                 listDangKiHocMoi.remove(i);
                 break;
             }
@@ -87,5 +90,25 @@ public class DangKyHocController {
 
         return "redirect:/class_registration";
 
+    }
+
+    @PostMapping("/luuDangKi")
+    public String luuDangKi (HttpSession session){
+        SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
+        if (sinhVien == null) {
+            return "redirect:/login";
+        }
+        List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi");
+        
+        dangKiHocRepository.deleteBySinhVien(sinhVien);
+        
+        for(DangKiHoc i : listDangKiHocMoi){
+            i.setSoLanHoc(0);
+            dangKiHocRepository.save(i);
+        }
+        
+        session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);
+        
+        return "redirect:/class_registration";
     }
 }

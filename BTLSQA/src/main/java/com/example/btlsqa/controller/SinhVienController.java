@@ -29,12 +29,18 @@ public class SinhVienController {
     @Autowired
     private MonHocService monHocService;
 
-    @RequestMapping(value = "/login")
-    public String login(Model model) {
+    @GetMapping(value = "/login")
+    public String login(HttpSession session) {
+
+        SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
+        if (sinhVien != null) {
+            return "redirect:/class_registration";
+        }
+
         return "login";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/checkLogin")
     public String handleLogin(@RequestParam("username") String username,
             @RequestParam("password") String password,
             RedirectAttributes redirectAttributes,
@@ -54,13 +60,21 @@ public class SinhVienController {
 
             return "redirect:/login";
         }
-        
+
         List<DangKiHoc> listDangKiHocMoi = dangKiHocService.getListDangKiHocBySinhVienId(sinhVien.getId());
-        
+
         session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);
-        
+
         session.setAttribute("sinhVien", sinhVien);
 
         return "redirect:/class_registration";
+    }
+
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+
+        session.invalidate();
+
+        return "redirect:/login";
     }
 }

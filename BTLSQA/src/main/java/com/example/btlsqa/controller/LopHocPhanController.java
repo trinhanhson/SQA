@@ -37,7 +37,7 @@ public class LopHocPhanController {
     private DangKiHocRepository dangKiHocRepository;
 
     @PostMapping("/chonLopHocPhan")
-    public String chonLopHocPhan(@RequestParam("lophoc") long newId, @RequestParam("id") long oldId, HttpSession session,RedirectAttributes ra) {
+    public String chonLopHocPhan(@RequestParam(name = "lophoc", required = false, defaultValue = "0") long newId, @RequestParam("id") long oldId, HttpSession session, RedirectAttributes ra) {
 
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
         if (sinhVien == null) {
@@ -74,10 +74,10 @@ public class LopHocPhanController {
             listDangKiHocMoi.add(dk);
 
             session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);
-            
+
             return "redirect:/class_registration";
         }
-        
+
         if (oldId != -1 && newId != 0) {
             Optional<LopHocPhan> lhp = lopHocPhanRepository.findById(newId);
 
@@ -86,7 +86,7 @@ public class LopHocPhanController {
             String tkbMatrix[][] = (String[][]) session.getAttribute("tkbMatrix");
 
             for (int i = 0; i < trueLhp.getSoTiet(); i++) {
-                if (tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i] != null&&tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i].equals(trueLhp.getMonHoc().getId())) {
+                if (tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i] != null && tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i].equals(trueLhp.getMonHoc().getId())) {
                     return "redirect:/choose/" + trueLhp.getMonHoc().getId();
                 }
             }
@@ -96,7 +96,7 @@ public class LopHocPhanController {
             List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi");
 
             for (int i = 0; i < listDangKiHocMoi.size(); i++) {
-                if (listDangKiHocMoi.get(i).getId() == oldId) {
+                if (listDangKiHocMoi.get(i).getLopHocPhan().getId() == oldId) {
                     dk = listDangKiHocMoi.remove(i);
                     break;
                 }
@@ -115,7 +115,7 @@ public class LopHocPhanController {
         List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi");
 
         for (int i = 0; i < listDangKiHocMoi.size(); i++) {
-            if (listDangKiHocMoi.get(i).getId() == oldId) {
+            if (listDangKiHocMoi.get(i).getLopHocPhan().getId() == oldId) {
                 listDangKiHocMoi.remove(i);
                 break;
             }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Đăng kí tín</title>
+        <title>Đăng kí tín chỉ</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <style>
             .button-container {
@@ -16,8 +16,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h2 class="text-center">Đăng kí tín</h2>
-                    <form>
+                    <h2 class="text-center">Đăng kí tín chỉ</h2>
+                    <form th:action="@{/luuDangKi}" method="post">
                         <div class="form-group">
                             <label >Tên sinh viên:</label>
                             <h5 class="card-title mb-4" th:text="${sinhVien.hoTen}"></h5>
@@ -64,16 +64,18 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="button-container">
-                            <form action="/logout" method="post">
-                                <button type="button" class="btn btn-default">Đăng xuất</button>
-                            </form>
-                            <form action="/choose" method="post">
-                                <button type="button" class="btn btn-primary">Tiếp tục đăng ký</button>
-                            </form>
-                            <button type="button" class="btn btn-success">Lưu đăng ký</button>
-                        </div>
+
+                        <button type="input" class="btn btn-success" style=" float: right;margin-left: 20px;">Lưu đăng ký</button>
                     </form>
+                    <div class="button-container">
+                        <form action="/logout" method="post">
+                            <button type="input" class="btn btn-default">Đăng xuất</button>
+                        </form>
+                        <form action="/choose" method="post">
+                            <button type="input" class="btn btn-primary" >Tiếp tục đăng ký</button>
+                        </form>
+                    </div>
+
                 </div>
             </div>
         </div>
