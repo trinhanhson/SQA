@@ -1,17 +1,14 @@
 package com.example.btlsqa.service;
 
-import com.example.btlsqa.model.DangKiHoc;
 import com.example.btlsqa.model.MonHoc;
 import com.example.btlsqa.repository.DangKiHocRepository;
 import com.example.btlsqa.repository.MonHocRepository;
 
-import java.util.ArrayList;
 
 import com.example.btlsqa.repository.MonHocTienQuyetRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -51,17 +48,4 @@ public class MonHocService {
         }
         return flag;
     }
-
-    public List<MonHoc> getAllMonHocByDangKiHocId(List<DangKiHoc> listDangKiHoc) {
-        List<MonHoc> listMonHoc = new ArrayList<>();
-
-        for (DangKiHoc i : listDangKiHoc) {
-            Optional<MonHoc> monHoc = monHocRepository.findByLopHocPhanId(i.getLopHocPhan().getId());
-            listMonHoc.add(monHoc.get());
-        }
-
-        return listMonHoc;
-    }
-
-
 }

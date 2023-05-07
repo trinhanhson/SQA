@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
-import org.springframework.data.repository.query.Param;
 
 
 @Repository
@@ -16,10 +15,6 @@ public interface MonHocRepository extends JpaRepository<MonHoc, String> {
     @Transactional
     @Override
     Optional<MonHoc> findById(String s);
-
-    @Transactional
-    @Query(value = "SELECT lhp.monHoc FROM LopHocPhan lhp WHERE lhp.id = :lopHocPhanId")
-    Optional<MonHoc> findByLopHocPhanId(@Param("lopHocPhanId") Integer lopHocPhanId);
     
     @Transactional
     @Query(value = "SELECT DISTINCT mh.ten FROM MonHoc mh")
