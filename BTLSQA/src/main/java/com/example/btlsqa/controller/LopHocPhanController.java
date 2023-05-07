@@ -57,7 +57,7 @@ public class LopHocPhanController {
 
             for (int i = 0; i < trueLhp.getSoTiet(); i++) {
                 if (tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i] != null) {
-                    ra.addAttribute("message", "Thời khóa biểu bị trùng với học phần khác");
+                    ra.addFlashAttribute("message", "Thời khóa biểu bị trùng với học phần khác");
                     return "redirect:/choose/" + trueLhp.getMonHoc().getId();
                 }
             }
@@ -87,6 +87,7 @@ public class LopHocPhanController {
 
             for (int i = 0; i < trueLhp.getSoTiet(); i++) {
                 if (tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i] != null && tkbMatrix[trueLhp.getThu()][trueLhp.getTietBatDau() + i].equals(trueLhp.getMonHoc().getId())) {
+                    ra.addFlashAttribute("message", "Thời khóa biểu bị trùng với học phần khác");
                     return "redirect:/choose/" + trueLhp.getMonHoc().getId();
                 }
             }

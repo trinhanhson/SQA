@@ -36,6 +36,9 @@
                                 <label class="card-title mb-4" th:text="'Số tín chỉ đã đăng kí: '+${stc}"></label>
                             </div>
                         </div>
+                        <div th:if="${message}" class="alert alert-danger text-center">
+                            [[${message}]]
+                        </div>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>

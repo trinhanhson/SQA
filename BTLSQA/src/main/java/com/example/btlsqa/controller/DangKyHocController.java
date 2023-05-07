@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -90,12 +91,23 @@ public class DangKyHocController {
     }
 
     @PostMapping("/luuDangKi")
-    public String luuDangKi(HttpSession session) {
+    public String luuDangKi(HttpSession session, RedirectAttributes ra) {
         SinhVien sinhVien = (SinhVien) session.getAttribute("sinhVien");
         if (sinhVien == null) {
             return "redirect:/login";
         }
         List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi");
+
+        int stc = 0;
+        for (DangKiHoc i : listDangKiHocMoi) {
+            stc += i.getLopHocPhan().getMonHoc().getSoTinChi();
+        }
+
+        if (stc < 14) {
+            ra.addFlashAttribute("message", "Sinh viên phải đăng ký tối thiểu 14 tín");
+        } else if (stc > 20) {
+            ra.addFlashAttribute("message", "Sinh viên phải đăng ký tối đa 20 tín");
+        }
 
         dangKiHocRepository.deleteBySinhVien(sinhVien);
 
