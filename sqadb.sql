@@ -63,23 +63,23 @@ VALUES
 
 INSERT INTO sqadb.mon_hoc (id,ten,so_tin_chi)
 values
-("BAS1150","Triết học Mác-Lenin",4),
-("BAS1201","Đại số",4),
-("BAS1203","Giải tích 1",4),
+("BAS1150","Triết học Mác-Lenin",3),
+("BAS1201","Đại số",3),
+("BAS1203","Giải tích 1",3),
 ("INT1154","Tin học cơ sở 1",2),
 
 ("BAS1226","Xác suất thống kê",2),
 ("BAS1151","Kinh tế chính trị Mác-Lenin",2),
 ("BAS1152","Chủ nghĩa xã hội khoa học",2),
-("BAS1204","Giải tích 2",4),
-("BAS1224","Vật lý 1",4),
+("BAS1204","Giải tích 2",3),
+("BAS1224","Vật lý 1",3),
 ("INT1155","Tin học cơ sở 2",2),
 
 ("BAS1122","Tư tưởng Hồ Chí Minh",2),
-("BAS1227","Vật lý 3",4),
-("INT1358","Toán rời rạc",4),
+("BAS1227","Vật lý 3",3),
+("INT1358","Toán rời rạc",3),
 ("ELE1433","Kỹ thuật số",2),
-("INT1339","Ngôn ngữ lập trình C++",4);
+("INT1339","Ngôn ngữ lập trình C++",3);
 
 INSERT INTO sqadb.mon_hoc_tien_quyet(id_mon_hoc,id_mon_hoc_tien_quyet)
 values
