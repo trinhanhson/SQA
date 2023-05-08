@@ -98,6 +98,20 @@ public class DangKyHocController {
         }
         List<DangKiHoc> listDangKiHocMoi = (List<DangKiHoc>) session.getAttribute("listDangKiHocMoi");
 
+        boolean isRemove = false;
+        for (DangKiHoc i : listDangKiHocMoi) {
+            if (!lopHocPhanRepository.checkSiSoThucTeById(i.getLopHocPhan().getId())) {
+                listDangKiHocMoi.remove(i);
+                isRemove = true;
+            }
+        }
+
+        if (isRemove) {
+            session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);
+            ra.addFlashAttribute("message", "Lớp tín chỉ đã đầy");
+            return "redirect:/class_registration";
+        }
+
         int stc = 0;
         for (DangKiHoc i : listDangKiHocMoi) {
             stc += i.getLopHocPhan().getMonHoc().getSoTinChi();
@@ -107,13 +121,14 @@ public class DangKyHocController {
             ra.addFlashAttribute("message", "Sinh viên phải đăng ký tối thiểu 14 tín");
         } else if (stc > 20) {
             ra.addFlashAttribute("message", "Sinh viên phải đăng ký tối đa 20 tín");
-        }
+        } else {
+            dangKiHocRepository.deleteBySinhVien(sinhVien);
+            for (DangKiHoc i : listDangKiHocMoi) {
+                i.setSoLanHoc(0);
+                dangKiHocRepository.save(i);
+                lopHocPhanRepository.setLopHocPhanById(i.getLopHocPhan().getId(), i.getLopHocPhan().getSiSoThucTe() + 1);
 
-        dangKiHocRepository.deleteBySinhVien(sinhVien);
-
-        for (DangKiHoc i : listDangKiHocMoi) {
-            i.setSoLanHoc(0);
-            dangKiHocRepository.save(i);
+            }
         }
 
         session.setAttribute("listDangKiHocMoi", listDangKiHocMoi);

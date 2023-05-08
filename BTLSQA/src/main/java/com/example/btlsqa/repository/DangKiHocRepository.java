@@ -23,5 +23,4 @@ public interface DangKiHocRepository extends JpaRepository<DangKiHoc, Integer> {
 
     @Transactional
     Integer deleteBySinhVien(SinhVien sinhVien);
-    
 }
