@@ -122,7 +122,7 @@ public class DangKyHocController {
         } else if (stc > 20) {
             ra.addFlashAttribute("message", "Sinh viên phải đăng ký tối đa 20 tín");
         } else {
-            dangKiHocRepository.deleteBySinhVien(sinhVien);
+            dangKiHocRepository.deleteBySinhVienAndSoLanHoc(sinhVien,0);
             for (DangKiHoc i : listDangKiHocMoi) {
                 i.setSoLanHoc(0);
                 dangKiHocRepository.save(i);

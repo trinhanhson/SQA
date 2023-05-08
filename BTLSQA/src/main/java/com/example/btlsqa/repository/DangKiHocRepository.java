@@ -22,5 +22,5 @@ public interface DangKiHocRepository extends JpaRepository<DangKiHoc, Integer> {
     List<DangKiHoc> findAllLopHocPhanDangDangKiBySinhVienId(@Param("sinhVienId") Integer sinhVienId);
 
     @Transactional
-    Integer deleteBySinhVien(SinhVien sinhVien);
+    Integer deleteBySinhVienAndSoLanHoc(SinhVien sinhVien,int soLanHoc);
 }
