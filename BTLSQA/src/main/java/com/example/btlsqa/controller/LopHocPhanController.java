@@ -7,10 +7,7 @@ package com.example.btlsqa.controller;
 import com.example.btlsqa.model.DangKiHoc;
 import com.example.btlsqa.model.LopHocPhan;
 import com.example.btlsqa.model.SinhVien;
-import com.example.btlsqa.repository.DangKiHocRepository;
 import com.example.btlsqa.repository.LopHocPhanRepository;
-import com.example.btlsqa.repository.MonHocRepository;
-import com.example.btlsqa.repository.SinhVienRepository;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
@@ -28,14 +25,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class LopHocPhanController {
 
     @Autowired
-    private MonHocRepository monHocRepository;
-    @Autowired
     private LopHocPhanRepository lopHocPhanRepository;
-    @Autowired
-    private SinhVienRepository sinhVienRepository;
-    @Autowired
-    private DangKiHocRepository dangKiHocRepository;
-
+    
     @PostMapping("/chonLopHocPhan")
     public String chonLopHocPhan(@RequestParam(name = "lophoc", required = false, defaultValue = "0") long newId, @RequestParam("id") long oldId, HttpSession session, RedirectAttributes ra) {
 

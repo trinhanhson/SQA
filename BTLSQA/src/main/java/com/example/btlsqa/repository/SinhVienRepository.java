@@ -9,9 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SinhVienRepository extends JpaRepository<SinhVien, Integer> {
-    @Transactional
-    SinhVien findById(int id);
-    
+
     @Transactional
     @Query("SELECT sv FROM SinhVien sv WHERE sv.tenDangNhap = :tenDangNhap AND sv.matKhau = :matKhau")
     SinhVien findByTenDangNhapVaMatKhau(@Param("tenDangNhap") String tenDangNhap, @Param("matKhau") String matKhau);

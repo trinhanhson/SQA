@@ -8,10 +8,6 @@ import com.example.btlsqa.model.DangKiHoc;
 import com.example.btlsqa.model.SinhVien;
 import com.example.btlsqa.repository.DangKiHocRepository;
 import com.example.btlsqa.repository.LopHocPhanRepository;
-import com.example.btlsqa.repository.MonHocTienQuyetRepository;
-import com.example.btlsqa.repository.SinhVienRepository;
-import com.example.btlsqa.service.DangKiHocService;
-import com.example.btlsqa.service.MonHocService;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,15 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class DangKyHocController {
 
     @Autowired
-    private MonHocTienQuyetRepository repository;
-    @Autowired
-    private MonHocService monHocService;
-    @Autowired
     private LopHocPhanRepository lopHocPhanRepository;
-    @Autowired
-    private SinhVienRepository sinhVienRepository;
-    @Autowired
-    private DangKiHocService dangKiHocService;
     @Autowired
     private DangKiHocRepository dangKiHocRepository;
 

@@ -5,7 +5,6 @@ import com.example.btlsqa.model.LopHocPhan;
 import com.example.btlsqa.model.MonHoc;
 import com.example.btlsqa.model.SinhVien;
 import com.example.btlsqa.repository.*;
-import com.example.btlsqa.service.DangKiHocService;
 import com.example.btlsqa.service.MonHocService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +23,6 @@ public class MonHocController {
 
     @Autowired
     private MonHocService monHocService;
-    @Autowired
-    private DangKiHocService dangKiHocService;
     @Autowired
     private LopHocPhanRepository lopHocPhanRepository;
 

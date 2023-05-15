@@ -13,6 +13,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 class MonHocServiceTest {
@@ -31,6 +32,7 @@ class MonHocServiceTest {
     void tearDown() {
     }
 
+    @Transactional
     @Test
     @DisplayName("tìm kiếm theo đúng id môn học")
     public void searchByIdOrSubjectName_withId() {
@@ -43,6 +45,7 @@ class MonHocServiceTest {
         assertEquals(listExpected.get(0).getSoTinChi(), listActual.get(0).getSoTinChi());
     }
 
+    @Transactional
     @Test
     @DisplayName("tìm kiếm theo id môn học chưa đầy đủ")
     public void searchByIdOrSubjectName_withIdIncomplete() {
@@ -58,6 +61,7 @@ class MonHocServiceTest {
         }
     }
 
+    @Transactional
     @Test
     @DisplayName("tìm kiếm theo đúng tên môn học")
     public void searchByIdOrSubjectName_withName() {
@@ -70,6 +74,7 @@ class MonHocServiceTest {
         assertEquals(listExpected.get(0).getSoTinChi(), listActual.get(0).getSoTinChi());
     }
 
+    @Transactional
     @Test
     @DisplayName("tìm kiếm theo tên môn học chưa đầy đủ")
     public void searchByIdOrSubjectName_withNameIncomplete() {
@@ -85,6 +90,7 @@ class MonHocServiceTest {
         }
     }
 
+    @Transactional
     @Test
     @DisplayName("tìm kiếm theo từ khóa trống")
     public void searchByIdOrSubjectName_keyEmpty() {
@@ -99,6 +105,7 @@ class MonHocServiceTest {
         }
     }
 
+    @Transactional
     @Test
     @DisplayName("tìm kiếm theo từ khóa không tồn tại trong danh sách môn học")
     public void searchByIdOrSubjectName_listEmpty() {
@@ -107,6 +114,7 @@ class MonHocServiceTest {
         assertThat(listActual).isEmpty();
     }
 
+    @Transactional
     @DisplayName("kiểm tra chọn môn học thành công")
     @Test
     public void checkPrerequisitesSubject_success() {
@@ -117,6 +125,7 @@ class MonHocServiceTest {
         assertEquals(expected, actual);
     }
 
+    @Transactional
     @Test
     @DisplayName("kiểm tra chọn môn học thất bại")
     public void checkPrerequisitesSubject_fail() {
