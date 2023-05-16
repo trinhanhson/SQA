@@ -15,12 +15,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
  *
  * @author ADMIN
  */
+@SpringBootTest
 public class DangKiHocServiceTest {
 
     @Autowired
@@ -47,6 +49,7 @@ public class DangKiHocServiceTest {
 
     @Transactional
     @Test
+    @org.junit.jupiter.api.Test
     public void testGetListDangKiHocBySinhVienId_TestSuccess() {
         System.out.println("getListDangKiHocBySinhVienId_TestSuccess: Lấy được danh sách đăng ký học đúng từ việc đăng nhập thành công");
         int sinhVienId = 1;

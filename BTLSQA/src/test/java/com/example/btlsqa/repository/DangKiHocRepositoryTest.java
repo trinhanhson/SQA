@@ -7,12 +7,10 @@ package com.example.btlsqa.repository;
 import com.example.btlsqa.model.DangKiHoc;
 import com.example.btlsqa.model.LopHocPhan;
 import com.example.btlsqa.model.SinhVien;
+import org.junit.*;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +46,8 @@ public class DangKiHocRepositoryTest {
     @After
     public void tearDown() {
     }
-    
+
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindMonHocBySinhVienId_Success() {
@@ -57,7 +56,7 @@ public class DangKiHocRepositoryTest {
         List<String> result = dangKiHocRepository.findMonHocBySinhVienId(sinhVienId);
         assertNotNull(result);
     }
-    
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindMonHocBySinhVienId_Fall() {
@@ -66,7 +65,7 @@ public class DangKiHocRepositoryTest {
         List<String> result = dangKiHocRepository.findMonHocBySinhVienId(sinhVienId);
         assertEquals(result.size(), 0);
     }
-    
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindAllLopHocPhanDangDangKiBySinhVienId_Success() {
@@ -75,7 +74,7 @@ public class DangKiHocRepositoryTest {
         List<DangKiHoc> result = dangKiHocRepository.findAllLopHocPhanDangDangKiBySinhVienId(sinhVienId);
         assertNotNull(result);
     }
-    
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindAllLopHocPhanDangDangKiBySinhVienId_Fall() {
@@ -84,7 +83,7 @@ public class DangKiHocRepositoryTest {
         List<DangKiHoc> result = dangKiHocRepository.findAllLopHocPhanDangDangKiBySinhVienId(sinhVienId);
         assertEquals(result.size(), 0);
     }
-    
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testDeleteBySinhVienAndSoLanHoc_Success() {
@@ -94,7 +93,7 @@ public class DangKiHocRepositoryTest {
         List<DangKiHoc> listDangKiHoc = dangKiHocRepository.findAllLopHocPhanDangDangKiBySinhVienId(1);
         assertEquals(listDangKiHoc.size(), 0);
     }
-    
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testSave_Success() {

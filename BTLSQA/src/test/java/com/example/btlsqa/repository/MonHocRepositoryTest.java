@@ -7,12 +7,10 @@ package com.example.btlsqa.repository;
 import com.example.btlsqa.model.MonHoc;
 import static org.junit.Assert.*;
 
+import org.junit.*;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,7 +45,7 @@ public class MonHocRepositoryTest {
     @After
     public void tearDown() {
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByIdContainingIgnoreCaseFull_Success() {
@@ -56,7 +54,7 @@ public class MonHocRepositoryTest {
         List<MonHoc> result = monHocRepository.findByIdContainingIgnoreCaseOrTenContainingIgnoreCase(id, id);
         assertNotEquals(result.size(), 0);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByIdContainingIgnoreCasePart_Success() {
@@ -65,7 +63,7 @@ public class MonHocRepositoryTest {
         List<MonHoc> result = monHocRepository.findByIdContainingIgnoreCaseOrTenContainingIgnoreCase(id, id);
         assertNotEquals(result.size(), 0);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByIdContainingIgnoreCase_Fall() {
@@ -74,7 +72,7 @@ public class MonHocRepositoryTest {
         List<MonHoc> result = monHocRepository.findByIdContainingIgnoreCaseOrTenContainingIgnoreCase(id, id);
         assertEquals(result.size(), 0);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenContainingIgnoreCaseFull_Success() {
@@ -83,7 +81,7 @@ public class MonHocRepositoryTest {
         List<MonHoc> result = monHocRepository.findByIdContainingIgnoreCaseOrTenContainingIgnoreCase(ten, ten);
         assertNotEquals(result.size(), 0);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenContainingIgnoreCasePart_Success() {
@@ -92,7 +90,7 @@ public class MonHocRepositoryTest {
         List<MonHoc> result = monHocRepository.findByIdContainingIgnoreCaseOrTenContainingIgnoreCase(ten, ten);
         assertNotEquals(result.size(), 0);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenContainingIgnoreCase_Fall() {
@@ -100,5 +98,15 @@ public class MonHocRepositoryTest {
         String ten = "FFFF";
         List<MonHoc> result = monHocRepository.findByIdContainingIgnoreCaseOrTenContainingIgnoreCase(ten, ten);
         assertEquals(result.size(), 0);
+    }
+
+    @Test
+    @Transactional
+    @org.junit.jupiter.api.Test
+    public void testFindByNameOrIdContainingIgnoreCase_Success() {
+        System.out.println("findByTenContainingIgnoreCase_Fall");
+        String ten = "";
+        List<MonHoc> result = monHocRepository.findByIdContainingIgnoreCaseOrTenContainingIgnoreCase(ten, ten);
+        assertNotEquals(result.size(), 0);
     }
 }

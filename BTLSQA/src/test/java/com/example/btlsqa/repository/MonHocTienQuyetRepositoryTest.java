@@ -6,12 +6,10 @@ package com.example.btlsqa.repository;
 
 import static org.junit.Assert.*;
 
+import org.junit.*;
 import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,7 +44,7 @@ public class MonHocTienQuyetRepositoryTest {
     @After
     public void tearDown() {
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByMonHocId_Success() {
@@ -55,7 +53,7 @@ public class MonHocTienQuyetRepositoryTest {
         List<String> result = monHocTienQuyetRepository.findByMonHocId(monHocId);
         assertNotEquals(result.size(), 0);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByMonHocId_Fall() {

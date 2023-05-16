@@ -8,12 +8,10 @@ import com.example.btlsqa.model.LopHocPhan;
 import java.util.List;
 import java.util.Optional;
 import static org.junit.Assert.*;
+
+import org.junit.*;
 import org.springframework.transaction.annotation.Transactional;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -48,7 +46,7 @@ public class LopHocPhanRepositoryTest {
     @After
     public void tearDown() {
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByMonHocId_Success() {
@@ -57,7 +55,7 @@ public class LopHocPhanRepositoryTest {
         List<LopHocPhan> result = lopHocPhanRepository.findByMonHocId(maMonHoc);
         assertNotEquals(result.size(), 0);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByMonHocId_Fall() {
@@ -66,7 +64,7 @@ public class LopHocPhanRepositoryTest {
         List<LopHocPhan> result = lopHocPhanRepository.findByMonHocId(maMonHoc);
         assertEquals(result.size(), 0);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testCheckSiSoThucTeById_Success() {
@@ -75,7 +73,7 @@ public class LopHocPhanRepositoryTest {
         boolean result = lopHocPhanRepository.checkSiSoThucTeById(id);
         assertEquals(result, true);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testSetLopHocPhanById_Success() {
@@ -87,7 +85,7 @@ public class LopHocPhanRepositoryTest {
 
         assertEquals(lopHocPhan.get().getSiSoThucTe(), siSoThucTe);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testSetLopHocPhanById_Fall() {
@@ -99,7 +97,7 @@ public class LopHocPhanRepositoryTest {
 
         assertTrue(lopHocPhan.isEmpty());
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindById_Success() {
@@ -109,7 +107,7 @@ public class LopHocPhanRepositoryTest {
 
         assertTrue(lopHocPhan.isPresent());
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindById_Fall() {

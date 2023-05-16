@@ -5,10 +5,8 @@
 package com.example.btlsqa.service;
 
 import com.example.btlsqa.model.SinhVien;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.*;
+
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +44,7 @@ public class SinhVienServiceTest extends AbstractTransactionalJUnit4SpringContex
     @After
     public void tearDown() {
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testLogin_TestSuccess() {
@@ -62,7 +60,7 @@ public class SinhVienServiceTest extends AbstractTransactionalJUnit4SpringContex
         assertEquals(expResult.getMaSinhVien(), result.getMaSinhVien());
 
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testLogin_TestFall1() {
@@ -72,7 +70,7 @@ public class SinhVienServiceTest extends AbstractTransactionalJUnit4SpringContex
         SinhVien result = sinhVienService.login(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testLogin_TestFall2() {
@@ -82,7 +80,7 @@ public class SinhVienServiceTest extends AbstractTransactionalJUnit4SpringContex
         SinhVien result = sinhVienService.login(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testLogin_TestFall3() {
@@ -92,7 +90,7 @@ public class SinhVienServiceTest extends AbstractTransactionalJUnit4SpringContex
         SinhVien result = sinhVienService.login(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testLogin_TestFall4() {
@@ -102,7 +100,7 @@ public class SinhVienServiceTest extends AbstractTransactionalJUnit4SpringContex
         SinhVien result = sinhVienService.login(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testLogin_TestFall5() {
@@ -112,7 +110,7 @@ public class SinhVienServiceTest extends AbstractTransactionalJUnit4SpringContex
         SinhVien result = sinhVienService.login(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testLogin_TestFall6() {

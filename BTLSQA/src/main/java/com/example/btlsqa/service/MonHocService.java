@@ -23,9 +23,9 @@ public class MonHocService {
     @Autowired
     private MonHocRepository monHocRepository;
 
-    public List<MonHoc> getAllMh() {
-        return monHocRepository.findAll();
-    }
+//    public List<MonHoc> getAllMh() {
+//        return monHocRepository.findAll();
+//    }
 
     public List<MonHoc> searchByIdOrSubjectName(String keyWord) {
         List<MonHoc> list = monHocRepository.findByIdContainingIgnoreCaseOrTenContainingIgnoreCase(keyWord, keyWord);

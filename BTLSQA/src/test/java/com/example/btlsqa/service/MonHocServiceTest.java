@@ -53,6 +53,7 @@ class MonHocServiceTest {
         List<MonHoc> listExpected = List.of(mockMonHocList.get(11), mockMonHocList.get(12),
                 mockMonHocList.get(13), mockMonHocList.get(14));
         List<MonHoc> listActual = monHocService.searchByIdOrSubjectName(keyWord);
+
         assertEquals(listExpected.size(), listActual.size());
         for (int i = 0; i < listActual.size(); i++) {
             assertEquals(listExpected.get(i).getId(), listActual.get(i).getId());
@@ -117,9 +118,20 @@ class MonHocServiceTest {
     @Transactional
     @DisplayName("kiểm tra chọn môn học thành công")
     @Test
-    public void checkPrerequisitesSubject_success() {
+    public void checkPrerequisitesSubject_success_1() {
         int idSinhVien = 1;
         String idMonHoc = "BAS1150";
+        boolean expected = true;
+        boolean actual = monHocService.checkPrerequisitesSubject(idSinhVien, idMonHoc);
+        assertEquals(expected, actual);
+    }
+
+    @Transactional
+    @DisplayName("kiểm tra chọn môn học thành công")
+    @Test
+    public void checkPrerequisitesSubject_success_2() {
+        int idSinhVien = 1;
+        String idMonHoc = "BAS1226";
         boolean expected = true;
         boolean actual = monHocService.checkPrerequisitesSubject(idSinhVien, idMonHoc);
         assertEquals(expected, actual);

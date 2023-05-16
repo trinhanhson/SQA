@@ -15,7 +15,7 @@ public class MocData {
             MonHoc.builder()
                     .id("BAS1150")
                     .ten("Triết học Mác-Lenin")
-                    .soTinChi(3)
+                    .soTinChi(4)
                     .build(),
             MonHoc.builder()
                     .id("BAS1151")
@@ -30,22 +30,22 @@ public class MocData {
             MonHoc.builder()
                     .id("BAS1201")
                     .ten("Đại số")
-                    .soTinChi(3)
+                    .soTinChi(4)
                     .build(),
             MonHoc.builder()
                     .id("BAS1203")
                     .ten("Giải tích 1")
-                    .soTinChi(3)
+                    .soTinChi(4)
                     .build(),
             MonHoc.builder()
                     .id("BAS1204")
                     .ten("Giải tích 2")
-                    .soTinChi(3)
+                    .soTinChi(4)
                     .build(),
             MonHoc.builder()
                     .id("BAS1224")
                     .ten("Vật lý 1")
-                    .soTinChi(3)
+                    .soTinChi(4)
                     .build(),
             MonHoc.builder()
                     .id("BAS1226")
@@ -55,7 +55,7 @@ public class MocData {
             MonHoc.builder()
                     .id("BAS1227")
                     .ten("Vật lý 3")
-                    .soTinChi(3)
+                    .soTinChi(4)
                     .build(),
             MonHoc.builder()
                     .id("ELE1433")
@@ -75,12 +75,12 @@ public class MocData {
             MonHoc.builder()
                     .id("INT1339")
                     .ten("Ngôn ngữ lập trình C++")
-                    .soTinChi(3)
+                    .soTinChi(4)
                     .build(),
             MonHoc.builder()
                     .id("INT1358")
                     .ten("Toán rời rạc")
-                    .soTinChi(3)
+                    .soTinChi(4)
                     .build()
         );
     }

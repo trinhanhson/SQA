@@ -5,10 +5,8 @@
 package com.example.btlsqa.repository;
 
 import com.example.btlsqa.model.SinhVien;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.*;
+
 import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +43,7 @@ public class SinhVienRepositoryTest {
     @After
     public void tearDown() {
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenDangNhapVaMatKhau_Success() {
@@ -61,7 +59,7 @@ public class SinhVienRepositoryTest {
         assertEquals(expResult.getMaSinhVien(), result.getMaSinhVien());
 
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenDangNhapVaMatKhau_Fall1() {
@@ -71,7 +69,7 @@ public class SinhVienRepositoryTest {
         SinhVien result = sinhVienRepository.findByTenDangNhapVaMatKhau(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenDangNhapVaMatKhau_Fall2() {
@@ -81,7 +79,7 @@ public class SinhVienRepositoryTest {
         SinhVien result = sinhVienRepository.findByTenDangNhapVaMatKhau(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenDangNhapVaMatKhau_Fall3() {
@@ -91,7 +89,7 @@ public class SinhVienRepositoryTest {
         SinhVien result = sinhVienRepository.findByTenDangNhapVaMatKhau(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenDangNhapVaMatKhau_Fall4() {
@@ -101,7 +99,7 @@ public class SinhVienRepositoryTest {
         SinhVien result = sinhVienRepository.findByTenDangNhapVaMatKhau(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenDangNhapVaMatKhau_Fall5() {
@@ -111,7 +109,7 @@ public class SinhVienRepositoryTest {
         SinhVien result = sinhVienRepository.findByTenDangNhapVaMatKhau(username, password);
         assertNull(result);
     }
-
+    @Test
     @Transactional
     @org.junit.jupiter.api.Test
     public void testFindByTenDangNhapVaMatKhau_Fall6() {
