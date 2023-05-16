@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -29,15 +28,4 @@ public class SinhVien {
 
     @Column(name = "ma_sinh_vien")
     private String maSinhVien;
-
-    @Override
-    public String toString() {
-        return "SinhVien{" +
-                "id=" + id +
-                ", tenDangNhap='" + tenDangNhap + '\'' +
-                ", matKhau='" + matKhau + '\'' +
-                ", hoTen='" + hoTen + '\'' +
-                ", maSinhVien='" + maSinhVien + '\'' +
-                '}';
-    }
 }

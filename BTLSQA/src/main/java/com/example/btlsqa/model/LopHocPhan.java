@@ -18,10 +18,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table(name = "lop_hoc_phan")
@@ -60,23 +58,6 @@ public class LopHocPhan {
 
     @OneToMany(mappedBy = "lopHocPhan")
     private List<DangKiHoc> danhSachDangKiHoc = new ArrayList<>();
-
-    @Override
-    public String toString() {
-        return "LopHocPhan{" +
-                "id=" + id +
-                ", nhomMonHoc='" + nhomMonHoc + '\'' +
-                ", siSoToiDa=" + siSoToiDa +
-                ", siSoThucTe=" + siSoThucTe +
-                ", thu=" + thu +
-                ", tietBatDau=" + tietBatDau +
-                ", soTiet=" + soTiet +
-                ", phong='" + phong + '\'' +
-                ", tenGiangVien='" + tenGiangVien + '\'' +
-                ", monHoc=" + monHoc +
-                ", danhSachDangKiHoc=" + danhSachDangKiHoc +
-                '}';
-    }
 
     public LopHocPhan(MonHoc monHoc) {
         this.monHoc = monHoc;

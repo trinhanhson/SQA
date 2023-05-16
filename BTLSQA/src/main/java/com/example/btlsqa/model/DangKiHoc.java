@@ -2,7 +2,6 @@ package com.example.btlsqa.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -27,15 +26,4 @@ public class DangKiHoc {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "lop_hoc_phan_id")
     private LopHocPhan lopHocPhan;
-
-    @Override
-    public String toString() {
-        return "DangKiHoc{" +
-                "id=" + id +
-                ", diemTongKet=" + diemTongKet +
-                ", soLanHoc=" + soLanHoc +
-                ", sinhVien=" + sinhVien +
-                ", lopHocPhan=" + lopHocPhan +
-                '}';
-    }
 }

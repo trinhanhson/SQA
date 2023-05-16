@@ -24,13 +24,4 @@ public class MonHoc {
 
     @Column(name = "so_tin_chi")
     private Integer soTinChi;
-
-    @Override
-    public String toString() {
-        return "MonHoc{" +
-                "id='" + id + '\'' +
-                ", ten='" + ten + '\'' +
-                ", soTinChi=" + soTinChi +
-                '}';
-    }
 }
