@@ -23,4 +23,12 @@ public class DangKiHocService {
     public List<DangKiHoc> getListDangKiHocBySinhVienId(int sinhVienId) {
         return dangKiHocRepository.findAllLopHocPhanDangDangKiBySinhVienId(sinhVienId);
     }
+
+    public boolean checkStcValid(List<DangKiHoc> listDangKiHocMoi) {
+        int stc = 0;
+        for (DangKiHoc i : listDangKiHocMoi) {
+            stc += i.getLopHocPhan().getMonHoc().getSoTinChi();
+        }
+        return stc >= 14 && stc <= 20;
+    }
 }
